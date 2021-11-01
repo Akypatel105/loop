@@ -1,0 +1,9 @@
+<?php
+
+return [
+    'IS_ACCEPT' => 0,
+    'POST_LIKE' => 1,
+    'POST_DISLIKE' => 0,
+    'PER_PAGE_LIMIT' => 20,
+
+];
