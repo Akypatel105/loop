@@ -20,7 +20,7 @@ class CustomerController extends Controller
         $this->validate($request,
          [
             'customer_email' => 'required_without:customer_mobile',
-            'customer_mobile' => 'required_without:customer_email|digits:10',
+            'customer_mobile' => 'required_without:customer_email',
             'customer_password' => 'required',
         ]);
 

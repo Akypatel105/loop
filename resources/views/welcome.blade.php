@@ -29,7 +29,7 @@
                   <nav class="intro-menu">
                      <div class="buttons">
                         <button class="login" data-toggle="modal" data-target="#login-page1" data-dismiss="modal">Log in</button>
-                        <button class="signup" data-toggle="modal" data-target="#login-page1" data-dismiss="modal">Sign up</button>
+                        <button data-toggle="modal" data-target="#exampleModalCenter" data-dismiss="modal">Sign up</button>
                      </div>
                   </nav>
                </div>
@@ -541,6 +541,8 @@
       </div>
      
 
+  
+
       <div id="myID" class="bottomMenu hide">
          <!----- login-modal ------->
          <div class="modal fade modal-3" id="login-page" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -557,7 +559,7 @@
                            <h2>Welcome to Loop</h2>
                            <!-- <p>welcome back, <br> you have been missed !</p> -->
                         </div>
-                     
+                        <div id="errors" class="help-block"> </div>                     
                         <form  id="loginForm" class="form-horizontal" method="post" action="javascript:void(0)">
                             @csrf
                             <div class="sign-in-form1">
@@ -580,7 +582,6 @@
                                      <input type="password" placeholder="Password" id="customer_password"  class="login-control" name="customer_password">
                                  </div>
                               </div>
-                              <div id="errors" class="help-block"> </div>
                                 <a class="forgot">Forgot Password ?</a>
                              
                                 <button class="next" id="send_form">Log in</button>
@@ -935,6 +936,27 @@
          </div>
       </div>
 
+
+      <!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <h1>Tests shjkhkjhkjhkjhk</h1>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
    
 
 
@@ -1153,12 +1175,14 @@
          });
 
          $('.login').click(function(){
+            // alert('huuuu');
             $('.co_sign-in1').show();
             $('.co_sign-up').hide();
             $('.co_user').hide();
             $('.co_for').hide();
             $('.co_reset').hide();
             $('.co_confirm').hide();
+            $("#myID").removeClass("bottomMenu hide");
          });
 
          $('.signup').click(function(){
@@ -1466,8 +1490,9 @@ $('#loginForm').validate({
           cache: false,
             success:function(response){
                 if(response.status == 1) {
+                  //  alert(response.status);
                     document.getElementById("loginForm").reset();
-                   
+                    window.location.href = "<?php echo URL::to('Home/index'); ?>";
                 } else {
                     
                     $('#errors').html(response.Message);

@@ -47,3 +47,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::group(['prefix' => 'Customer'], function () {
     Route::post('/login', [CustomerController::class, 'customerLogin']);
 });
+
+Route::group(['prefix' => 'Home'], function () {
+    Route::get('/index', [HomeController::class, 'index']);
+});
+Route::post('/logout', [HomeController::class, 'logout']);
