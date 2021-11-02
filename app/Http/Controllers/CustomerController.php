@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Repositories\RegisterRepository;
+use App\Repositories\UserRepository;
 use Auth;
 use DB;
 use Illuminate\Http\Request;
@@ -10,6 +13,15 @@ use Validator;
 
 class CustomerController extends Controller
 {
+    protected $registerRepository;
+    protected $userRepository;
+
+    public function __construct(RegisterRepository $registerRepository, UserRepository $userRepository)
+    {
+        $this->registerRepository = $registerRepository;
+        $this->userRepository = $userRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -56,8 +68,109 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        $this->validate($request,
+        [
+            'cust_name' => 'required',
+            'cust_email' => 'required_without:cust_mobile',
+            'cust_mobile' => 'required_without:cust_email',
+            'cust_password' => 'required',
+       ]);
+        $access_token = rand(1000, 9999);
+        $user = [];
+        $name = $request->cust_name;
+        $cust_email = $request->cust_email;
+        $cust_mobile = $request->cust_mobile;
+        $cust_password = $request->cust_password;
+        $gender = $request->gender;
+        $isExist = $this->registerRepository->isUserExists($cust_email, '+91', $cust_mobile);
+
+        if ($isExist) {
+            return response()->json([
+                'status' => 0,
+                'data' => [],
+                'Message' => 'You are already registered with us!!!',
+           ]);
+        }
+
+        $user = [
+        'name' => $name,
+        'gender' => $gender,
+        'email' => $cust_email,
+        'mobile' => $cust_mobile,
+        'password' => bcrypt($cust_password),
+        'country_code' => config('constants.DEFAULT_COUNTRY_CODE'),
+        'access_token' => 1234, // replace once you configure SMS gateway
+        ];
+        $res = User::create($user)->toArray();
+        if (!empty($res)) {
+            return response()->json([
+                'status' => 1,
+                'data' => $res,
+                'Message' => 'We have sent OTP on your mobile/email!!!',
+           ]);
+        } else {
+            return response()->json([
+                'status' => 0,
+                'data' => [],
+                'Message' => 'Something went wrong, Please try again later!!!',
+           ]);
+        }
+    }
+
+    /**
+     * verifyOTP.
+     */
+    public function verifyOTP(Request $request)
+    {
+        $this->validate($request,
+        [
+            'user_id' => 'required',
+            'access_token' => 'required',
+       ]);
+
+        $ac_user_id = $request->user_id;
+        $access_token = $request->access_token;
+
+        $user = $this->registerRepository->getUserById($ac_user_id);
+
+        if (!empty($user)) {
+            if ($access_token == $user[0]['access_token']) {
+                $affected_row = $this->userRepository->verifyUser($user[0]['id']);
+
+                if (!empty($affected_row)) {
+                    return response()->json([
+                        'status' => 1,
+                        'data' => $user,
+                        'Message' => 'Customer has been succesfully verified!!!',
+                   ]);
+                } else {
+                    return response()->json([
+                        'status' => 0,
+                        'data' => [],
+                        'Message' => 'Somethig went wrong, please try again later!!!',
+                   ]);
+                }
+            } else {
+                return response()->json([
+                    'status' => 0,
+                    'data' => [],
+                    'Message' => 'Verificarion code does not matched!!!',
+               ]);
+            }
+        } else {
+            return response()->json([
+                'status' => 0,
+                'data' => [],
+                'Message' => 'User does not exists!!!',
+           ]);
+        }
+
+        echo '<pre>';
+        print_r($user[0]['id']);
+        echo '</pre>';
+        exit();
     }
 
     /**

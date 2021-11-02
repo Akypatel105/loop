@@ -29,6 +29,13 @@ class RegisterRepository
         return $query;
     }
 
+    public function getUserById($ac_user_id)
+    {
+        $query = User::where('id', $ac_user_id)->get()->toArray();
+
+        return $query;
+    }
+
     /*
      * set payload data for posts table.
      *

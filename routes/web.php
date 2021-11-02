@@ -46,6 +46,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::group(['prefix' => 'Customer'], function () {
     Route::post('/login', [CustomerController::class, 'customerLogin']);
+    Route::post('/register', [CustomerController::class, 'create']);
+    Route::post('/verifyOTP', [CustomerController::class, 'verifyOTP']);
 });
 
 Route::group(['prefix' => 'Home'], function () {

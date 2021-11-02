@@ -12,6 +12,7 @@
       <link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300;400;600;700&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
       <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.1.6/css/intlTelInput.css">
       <link rel="icon" href="{{ asset('image/logo.png') }}">
       <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +30,7 @@
                   <nav class="intro-menu">
                      <div class="buttons">
                         <button class="login" data-toggle="modal" data-target="#login-page1" data-dismiss="modal">Log in</button>
-                        <button data-toggle="modal" data-target="#exampleModalCenter" data-dismiss="modal">Sign up</button>
+                        <button class="signup" data-toggle="modal" data-target="#login-page1" data-dismiss="modal">Sign up</button>
                      </div>
                   </nav>
                </div>
@@ -541,7 +542,26 @@
       </div>
      
 
-  
+      <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
       <div id="myID" class="bottomMenu hide">
          <!----- login-modal ------->
@@ -563,18 +583,18 @@
                         <form  id="loginForm" class="form-horizontal" method="post" action="javascript:void(0)">
                             @csrf
                             <div class="sign-in-form1">
+                            <div class="text form-group">
+                                 <label class="col-xs-3 control-label"><i class="fal fa-phone-volume"></i></label>
+                                 <div class="col-xs-5">
+                                    <input type="number" placeholder="Mobile Number" id="customer_mobile" class="login-control" name="customer_mobile">
+                                </div>
+                              </div>
+                              <h3 class="or-1">OR</h3>
                               <div class="text text_1 form-group">
                                  <label class="col-xs-3 control-label"> <i class="fal fa-envelope"></i></label>
                                  <div class="col-xs-5">
                                      <input type="email" placeholder="Email" id="customer_email" class="login-control"  name="customer_email">
                                  </div>
-                              </div>
-                              <h3 class="or-1">OR</h3>
-                              <div class="text form-group">
-                              <label class="col-xs-3 control-label"><i class="fal fa-phone-volume"></i></label>
-                                 <div class="col-xs-5">
-                                    <input type="number" placeholder="Mobile Number" id="customer_mobile" class="login-control" name="customer_mobile">
-                                </div>
                               </div>
                                 <div class="text form-group">
                                 <label class="col-xs-3 control-label"> <i class="fal fa-lock-alt"></i></label>
@@ -600,7 +620,7 @@
                      </div>
                      
                      <!---------- sign-up-modal --------------->
-                     <div class="co_thumps co_thumps1 co_sign-up">
+                     <!-- <div class="co_thumps co_thumps1 co_sign-up">
                         <div class="section-1">
                            <div class="login-logo">
                               <a href="#"><img src="image/logo.png"></a>
@@ -612,75 +632,102 @@
                               <h2>Sign Up with below options</h2>
                               <ul class="nav tab-login" role="tablist">
                                  <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Phone Number</a>
+                                    <div class="col-xs-5">
+                                       <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Phone Number</a>
+                                    </div>
                                  </li>
                                  <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Email Address</a>
+                                   <div class="col-xs-5">
+                                       <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Email Address</a>
+                                    </div>
                                  </li>
-                              </ul><!-- Tab panes -->
-                              <div class="tab-content">
-                                 <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                                    <form method="post" action="#" accept-charset="utf-8">
-                                       <div>
-                                          <input id="phone" type="tel" placeholder="Phone Number">
-                                       </div>
-                                    </form>
+                              </ul>
+                                 <div class="tab-content">
+                                    <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                                          <div class="form-group">
+                                             <input id="cust_phone" name="cust_phone" type="tel" placeholder="Phone Number">
+                                          </div>
+                                    </div>
+                                    <div class="tab-pane Tab2 form-group" id="tabs-2" role="tabpanel">
+                                          <input type="email" placeholder="Enter Email" id="cust_email" name="cust_email">
+                                    </div>
                                  </div>
-                                 <div class="tab-pane Tab2" id="tabs-2" role="tabpanel">
-                                    <form>
-                                       <input type="email" placeholder="Enter Email" name="">
-                                     </form>
-                                 </div>
-                              </div>
-                           <button class="next con_2">next</button>
+                                <button id="signup-btn" class="next con_2">next</button>
                         </div>
-                     </div>
+                     </div> -->
 
                      <!---------- user-modal --------------->
                      <div class="co_thumps co_user">
-                        <h2><i class="arrow fal fa-chevron-left"></i>Profile Page</h2>
+                        <h2><i class="arrow fal fa-chevron-left"></i>Welcome to Loop</h2>
                         <div class="upload-img">
-                           <i class="fal fa-image"></i>
-                           <h3>Upload photo</h3>
-                        </div>
+                           <input type="file" id="file-upload" multiple required />
+                           <label for="file-upload"><i class="choose-img fal fa-image"></i></label>
+                           <div id="file-upload-filename"></div>
+                           <div class="pencial-icon">
+                              <i class="fas fa-pencil-alt"></i>
+                           </div>
+	                  	</div>
                         <div class="user-form">
-                           <div class="line"></div>
-                           <form>
-                              <div class="text">
-                                 <i class="fal fa-envelope"></i>
-                                 <input type="email" placeholder="User Id" name="user id" value="" required>
+                           <form  id="signup-form" class="form-horizontal" method="post" action="javascript:void(0)">
+                              @csrf
+                              <div class="line"></div>
+                              <div id="reg_error" class="help-block"> </div>  
+                              <div class="text form-group">
+                                 <label class="col-xs-3 control-label"> <i class="fal fa-user"></i></label>
+                                 <div class="col-xs-5">
+                                    <input type="text" class="login-control" placeholder="Name" name="cust_name" id="cust_name" >
+                                 </div>   
                               </div>
-                              <div class="text">
-                                 <i class="fal fa-user"></i>
-                                 <input type="text" placeholder="Name" name="name" value="" required>
-                              </div>
-                              <div class="text">
+                              <!-- <div class="text">
                                  <i class="fal fa-user"></i>
                                  <input type="text" placeholder="Gender" name="Gender" value="" required>
+                              </div> -->
+                              <div class="text form-group">
+                                 <label class="col-xs-3 control-label"> <i class="fas fa-mobile-alt"></i></label>
+                                 <div class="col-xs-5">
+                                    <input type="number" class="login-control" placeholder="Mobile Number" name="cust_mobile" id="cust_mobile">
+                                 </div>
                               </div>
-                              <div class="text">
-                                 <i class="fas fa-mobile-alt"></i>
-                                 <input type="text" placeholder="Contact Details" name="contact Details" value="" required>
+                              <div class="text form-group">
+                                 <label class="col-xs-3 control-label">  <i class="fal fa-envelope"></i></label>
+                                 <div class="col-xs-5">
+                                    <input type="email" class="login-control" placeholder="Email" name="cust_email" id="cust_email">
+                                 </div>
                               </div>
-                              <div class="text">
-                                 <i class="fal fa-envelope"></i>
-                                 <input type="email" placeholder="Email Address" name="email" value="" required>
+                              <div class="text form-group">
+                                 <label class="col-xs-3 control-label"><i class="fal fa-lock-alt"></i></label>
+                                 <div class="col-xs-5">
+                                    <input type="password" class="login-control" placeholder="Password" name="cust_password" id="cust_password">
+                                 </div>
                               </div>
-                              <div class="text">
-                                 <i class="fal fa-lock-alt"></i>
-                                 <input type="text" placeholder="Password" name="Password" value="" required>
+                              <div class="text form-group">
+                                 <label class="col-xs-3 control-label"><i class="fal fa-lock-alt"></i></label>
+                                 <div class="col-xs-5">
+                                    <input type="password" class="login-control" placeholder="Confirm Password" name="confirm_password" id="confirm_password">
+                                 </div>
                               </div>
+                              <div class="text text1 text_gender form-group">
+                                 <p>
+                                    <input type="radio" id="setD_male" name="gender" value="1" checked>
+                                    <label for="setD_male">Male</label>
+                                 </p>
+                                 <p>
+                                    <input type="radio" id="setD_female" name="gender" value="0">
+                                    <label for="setD_female">Female</label>
+                                 </p>
+	        			            </div>
+                              <button id="signup-btn" class="next">Continue</button>
                            </form>
-                           <button class="next">Sign - Up</button>
-                           <p class="sign-up-link con_4">Don't have an account ? <a class="sign_link">Sign-In</a></p>
+
+                           <p class="sign-up-link con_4">Already have an account ? <a class="sign_link">Log In</a></p>
                         </div>
                      </div>
 
                      <!---------- forgot password-modal --------------->
                      <div class="co_thumps co_thumps1 co_sign-in co_for">
-                        <h2><i class="arrow fal fa-chevron-left"></i>forgot password</h2>
+                        <h2><i class="arrow fal fa-chevron-left"></i>Forgot Password</h2>
                         <div class="sign-again">
-                           <h3>forgot your password ?</h3>
+                           <!-- <h3>forgot your password ?</h3> -->
                            <p>Enter your register email below to receive password reset instruction</p>
                         </div>
                         <div class="sign-in-form1">
@@ -689,7 +736,7 @@
                                  <i class="fal fa-phone-volume"></i>
                                  <input type="number" placeholder="Phone Number" name="number" value="" required>
                               </div>
-                              <h3 class="or-1">Or</h3>
+                              <h3 class="or-1">OR</h3>
                               <div class="text text_1">
                                  <i class="fal fa-envelope"></i>
                                  <input type="email" placeholder="E-Mail" name="email" value="" required>
@@ -700,15 +747,22 @@
                         </div>
                      </div>
 
-                     <!---------- OPT-modal --------------->
+                     <!---------- OTP-modal --------------->
                      <div class="co_thumps co_thumps1 co_confirm">
                         <h2><i class="arrow fal fa-chevron-left"></i></h2>
                         <div class="confirm-section">
-                           <h6>Enter 6 digit verification code sent to your number</h6>
-                           <div class="container1"></div>
-                               <p> Resend OTP in <span id="countdowntimer">30 </span> Seconds</p>
-                           <button class="next con_3">next</button>
-                           <button class="next con_7">next</button>
+                           <h6>Enter 4 digits verification code sent to your mobile/email</h6>
+                           <form  id="otp-form" class="form-horizontal" method="post" action="javascript:void(0)">
+                              @csrf
+                              <input type="hidden" id="user_id" name="user_id">
+                              <div class="form-group">
+                                 <input class="otp login-control" name="access_token" id="access_token" type="text" maxlength=4 >
+                              </div>
+                               <div id="otp_error" class="help-block"> </div>
+                              <button class='btn customBtn'>Verify OTP</button>
+                           </form>
+                           <!-- <button class="next con_3">next</button>
+                           <button class="next con_7">next</button> -->
                         </div>
                      </div>
 
@@ -754,6 +808,7 @@
       <a href="#" class="scroll_1 scroll-down" address="true"><i class="fal fa-angle-double-down"></i></a>
 
 
+ 
    <!----- login-modal ------->
       <div class="modal fade modal-3" id="login-page1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
@@ -762,30 +817,48 @@
                <div class="modal-body">
                   <!---------- login-modal --------------->
                   <div class="co_thumps co_sign-in co_sign-in1">
-                     <h2>sign in</h2>
-                     <div class="sign-again">
-                        <h3>let's sign you again.</h3>
-                        <p>welcome back, <br> you have been missed !</p>
-                     </div>
+                    
+                       <div class="signin-logo">
+                           <a href="#"><img src="image/logo.png"></a>
+                        </div>
+
+                         <div class="sign-again">
+                           <h2>Welcome to Loop</h2>
+                           <!-- <p>welcome back, <br> you have been missed !</p> -->
+                        </div>
                      <div class="sign-in-form1">
-                        <form>
-                           <div class="text text_1">
-                              <i class="fal fa-envelope"></i>
-                              <input type="email" placeholder="E-Mail" name="email" value="" required>
+                       <div id="head_errors" class="help-block"> </div>                     
+                        <form  id="head_loginForm" class="form-horizontal" method="post" action="javascript:void(0)">
+                            @csrf
+                            <div class="text form-group">
+                               <label class="col-xs-3 control-label"><i class="fal fa-phone-volume"></i></label>
+                                <div class="col-xs-5">
+                              <input type="number" placeholder="Mobile Number" id="head_customer_mobile" class="login-control" name="head_customer_mobile" >
                            </div>
-                           <h3 class="or-1">or</h3>
-                           <div class="text">
-                              <i class="fal fa-phone-volume"></i>
-                              <input type="number" placeholder="Phone Number" name="number" value="" required>
+                               
+                            </div>
+                              <h3 class="or-1">OR</h3>   
+
+                             <div class="text text_1 form-group">
+                              <label class="col-xs-3 control-label"> <i class="fal fa-envelope"></i></label>
+                                <div class="col-xs-5">
+                                 <input type="email" placeholder="Email" id="head_customer_email" name="head_customer_email" >
+                              </div> 
                            </div>
-                           <div class="text">
-                              <i class="fal fa-lock-alt"></i>
-                              <input type="text" placeholder="Password" name="Password" value="" required>
+
+                        
+                           <div class="text form-group">
+                              <label class="col-xs-3 control-label"> <i class="fal fa-lock-alt"></i></label>
+                                <div class="col-xs-5">
+                              <input type="password" placeholder="Password"  id="head_customer_password"  name="head_customer_password">
+                           </div>
                            </div>
                            <a class="forgot">Forgot Password ?</a>
+
+                            <button class="next" id="log_in">Log in</button>
                         </form>
-                        <button class="next">Sign - in</button>
-                        <p class="or">or, sign - in with</p>
+                       
+                        <p class="or">OR Sign in With</p>
                         <div class="face-login">
                            <div class="face face1">
                               <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -794,12 +867,12 @@
                               <a href="#"><i class="fab fa-google"></i></a>
                            </div>
                         </div>
-                        <p class="sign-up-link con_5">Don't have an account ? <a class="sign_link">Sign-Up</a></p>
+                        <p class="sign-up-link con_5">Not on Loop yet? <a class="sign_link">Sign-Up</a></p>
                      </div>
                   </div>
                      
                   <!---------- sign-up-modal --------------->
-                  <div class="co_thumps co_thumps1 co_sign-up">
+                  <!-- <div class="co_thumps co_thumps1 co_sign-up">
                      <div class="section-1">
                         <div class="login-logo">
                            <a href="#"><img src="image/logo.png"></a>
@@ -816,7 +889,7 @@
                               <li class="nav-item">
                                  <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab">Email Address</a>
                               </li>
-                           </ul><!-- Tab panes -->
+                           </ul>
                            <div class="tab-content">
                               <div class="tab-pane active" id="tabs-3" role="tabpanel">
                                  <form method="post" action="#" accept-charset="utf-8">
@@ -833,47 +906,71 @@
                            </div>
                         <button class="next con_2">next</button>
                      </div>
-                  </div>
+                  </div> -->
 
                   <!---------- user-modal --------------->
                   <div class="co_thumps co_user">
-                     <h2><i class="arrow fal fa-chevron-left"></i>Profile Page</h2>
-                     <div class="upload-img">
-                        <i class="fal fa-image"></i>
-                        <h3>Upload photo</h3>
+                        <h2><i class="arrow fal fa-chevron-left"></i>Welcome to Loop</h2>
+                        <div class="upload-img">
+                           <input type="file" id="file-upload" multiple required />
+                           <label for="file-upload"><i class="choose-img fal fa-image"></i></label>
+                           <div id="file-upload-filename"></div>
+                           <div class="pencial-icon">
+                              <i class="fas fa-pencil-alt"></i>
+                           </div>
+                        </div>
+                        <div class="user-form">
+                           <form  id="head_signup-form" class="form-horizontal" method="post" action="javascript:void(0)">
+                              @csrf
+                              <div class="line"></div>
+                              <div id="_head_reg_error" class="help-block"> </div>  
+                              <div class="text form-group">
+                                 <label class="col-xs-3 control-label"> <i class="fal fa-user"></i></label>
+                                 <div class="col-xs-5">
+                                    <input type="text" class="login-control" placeholder="Name" name="head_cust_name" id="head_cust_name" >
+                                 </div>   
+                              </div>
+                             
+                              <div class="text form-group">
+                                 <label class="col-xs-3 control-label"> <i class="fas fa-mobile-alt"></i></label>
+                                 <div class="col-xs-5">
+                                    <input type="number" class="login-control" placeholder="Mobile Number" name="head_cust_mobile" id="head_cust_mobile">
+                                 </div>
+                              </div>
+                              <div class="text form-group">
+                                 <label class="col-xs-3 control-label">  <i class="fal fa-envelope"></i></label>
+                                 <div class="col-xs-5">
+                                    <input type="email" class="login-control" placeholder="Email" name="head_cust_email" id="head_cust_email">
+                                 </div>
+                              </div>
+                              <div class="text form-group">
+                                 <label class="col-xs-3 control-label"><i class="fal fa-lock-alt"></i></label>
+                                 <div class="col-xs-5">
+                                    <input type="password" class="login-control" placeholder="Password" name="head_cust_password" id="head_cust_password">
+                                 </div>
+                              </div>
+                              <div class="text form-group">
+                                 <label class="col-xs-3 control-label"><i class="fal fa-lock-alt"></i></label>
+                                 <div class="col-xs-5">
+                                    <input type="password" class="login-control" placeholder="Confirm Password" name="head_confirm_password" id="head_confirm_password">
+                                 </div>
+                              </div>
+                              <div class="text text1 text_gender form-group">
+                                 <p>
+                                    <input type="radio" id="head_setD_male" name="head_gender" value="1" checked>
+                                    <label for="head_setD_male">Male</label>
+                                 </p>
+                                 <p>
+                                    <input type="radio" id="head_setD_female" name="head_gender" value="0">
+                                    <label for="head_setD_female">Female</label>
+                                 </p>
+                              </div>
+                              <button id="head_signup-btn" class="next">Continue</button>
+                           </form>
+
+                           <p class="sign-up-link con_4">Already have an account ? <a class="sign_link">Log In</a></p>
+                        </div>
                      </div>
-                     <div class="user-form">
-                        <div class="line"></div>
-                        <form>
-                           <div class="text">
-                              <i class="fal fa-envelope"></i>
-                              <input type="email" placeholder="User Id" name="user id" value="" required>
-                           </div>
-                           <div class="text">
-                              <i class="fal fa-user"></i>
-                              <input type="text" placeholder="Name" name="name" value="" required>
-                           </div>
-                           <div class="text">
-                              <i class="fal fa-user"></i>
-                              <input type="text" placeholder="Gender" name="Gender" value="" required>
-                           </div>
-                           <div class="text">
-                              <i class="fas fa-mobile-alt"></i>
-                              <input type="text" placeholder="Contact Details" name="contact Details" value="" required>
-                           </div>
-                           <div class="text">
-                              <i class="fal fa-envelope"></i>
-                              <input type="email" placeholder="Email Address" name="email" value="" required>
-                           </div>
-                           <div class="text">
-                              <i class="fal fa-lock-alt"></i>
-                              <input type="text" placeholder="Password" name="Password" value="" required>
-                           </div>
-                        </form>
-                        <button class="next">Sign - Up</button>
-                        <p class="sign-up-link con_4">Don't have an account ? <a class="sign_link">Sign-In</a></p>
-                     </div>
-                  </div>
 
                   <!---------- forgot password-modal --------------->
                   <div class="co_thumps co_thumps1 co_sign-in co_for">
@@ -903,11 +1000,16 @@
                   <div class="co_thumps co_thumps1 co_confirm">
                      <h2><i class="arrow fal fa-chevron-left"></i></h2>
                      <div class="confirm-section">
-                        <h6>Enter 6 digit verification code sent to your number</h6>
-                        <div class="container2"></div>
-                            <p> Resend OTP in <span id="countdowntimer2">30 </span> Seconds</p>
-                        <button class="next con_3">next</button>
-                        <button class="next con_7">next</button>
+                     <h6>Enter 4 digits verification code sent to your mobile/email</h6>
+                           <form  id="head-otp-form" class="form-horizontal" method="post" action="javascript:void(0)">
+                              @csrf
+                              <input type="hidden" id="head_user_id" name="head_user_id">
+                              <div class="form-group">
+                                 <input class="otp login-control" name="head_access_token" id="head_access_token" type="text" maxlength=4 >
+                              </div>
+                               <div id="head_otp_error" class="help-block"> </div>
+                              <button class='btn customBtn'>Verify OTP</button>
+                           </form>
                      </div>
                   </div>
 
@@ -935,28 +1037,6 @@
             </div>
          </div>
       </div>
-
-
-      <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       <h1>Tests shjkhkjhkjhkjhk</h1>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
    
 
 
@@ -1085,6 +1165,19 @@
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.1.6/js/intlTelInput.min.js"></script>
       <script src="{{ asset('js/script.js') }}"></script>
       <script type="text/javascript">
+//       let digitValidate = function(ele){
+//   console.log(ele.value);
+//   ele.value = ele.value.replace(/[^0-9]/g,'');
+// }
+
+// let tabChange = function(val){
+//     let ele = document.querySelectorAll('input');
+//     if(ele[val-1].value != ''){
+//       ele[val].focus()
+//     }else if(ele[val-1].value == ''){
+//       ele[val-2].focus()
+//     }   
+//  } 
          $(function() {
             $('.scroll-down').click (function() {
                $('html, body').animate({scrollTop: $(this).offset().top }, 'slow');
@@ -1141,16 +1234,17 @@
          });
 
          $('.con_5').click(function(){
-            $('.co_sign-up').show();
+            // $('.co_sign-up').show();
+            $('.co_user').show();
             $('.co_sign-in1').hide();
             $('.con_7').hide();
          });
 
-         $('.con_2').click(function(){
-            $('.co_confirm').show();
-            $('.co_sign-up').hide();
-            $('.con_7').hide();
-         });
+         // $('.con_2').click(function(){
+         //    $('.co_confirm').show();
+         //    $('.co_sign-up').hide();
+         //    $('.con_7').hide();
+         // });
 
          $('.con_3').click(function(){
             $('.co_user').show();
@@ -1186,9 +1280,10 @@
          });
 
          $('.signup').click(function(){
-            $('.co_sign-up').show();
+            // $('.co_sign-up').show();
+            $('.co_user').show();
             $('.co_sign-in1').hide();
-            $('.co_user').hide();
+            // $('.co_user').hide();
             $('.co_for').hide();
             $('.co_reset').hide();
             $('.co_confirm').hide();
@@ -1199,28 +1294,28 @@
          let telInput = $("#phone")
 
 // initialize
-// telInput.intlTelInput({
-//     initialCountry: 'auto',
-//     preferredCountries: ['us','gb','br','ru','cn','es','it'],
-//     autoPlaceholder: 'aggressive',
-//     utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.1.6/js/utils.js",
-//     geoIpLookup: function(callback) {
-//         fetch('https://ipinfo.io/json', {
-//             cache: 'reload'
-//         }).then(response => {
-//             if ( response.ok ) {
-//                  return response.json()
-//             }
-//             throw new Error('Failed: ' + response.status)
-//         }).then(ipjson => {
-//             callback(ipjson.country)
-//         }).catch(e => {
-//             callback('us')
-//         })
-//     }
-// });
+telInput.intlTelInput({
+    initialCountry: 'auto',
+    preferredCountries: ['us','gb','br','ru','cn','es','it'],
+    autoPlaceholder: 'aggressive',
+    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.1.6/js/utils.js",
+    geoIpLookup: function(callback) {
+        fetch('https://ipinfo.io/json', {
+            cache: 'reload'
+        }).then(response => {
+            if ( response.ok ) {
+                 return response.json()
+            }
+            throw new Error('Failed: ' + response.status)
+        }).then(ipjson => {
+            callback(ipjson.country)
+        }).catch(e => {
+            callback('us')
+        })
+    }
+});
 
-let telInput2 = $("#phone2")
+let telInput2 = $("#country_code")
 
 // initialize
 telInput2.intlTelInput({
@@ -1231,210 +1326,7 @@ telInput2.intlTelInput({
 });
 
 
-var timeleft = 30;
-        var downloadTimer = setInterval(function(){
-        timeleft--;
-        document.getElementById("countdowntimer").textContent = timeleft;
-        if(timeleft <= 0)
-            clearInterval(downloadTimer);
-        },1000);
 
-
-
-const result = document.querySelector('.result'); // Built n inputs dynamically
-
-const times = () => {
-  let inputTemplates = [];
-
-  for (let i = 0; i < 6; i++) {
-    inputTemplates[i] = '<input type="text" onchange="isComplete()" maxlength="1" oninput="goToNextInput()">';
-  }
-
-  let inputCollection = inputTemplates.join('');
-  return inputCollection;
-}; // Mount html template
-
-
-const container1 = document.querySelector('.container1');
-container1.innerHTML = times(); // Collect the inputs
-
-const inputsList = document.querySelectorAll('input'); // onchange setDisabledAttribute
-
-const isComplete = () => {
-  for (const [i, inputElement] of inputsList.entries()) {
-    if (inputElement.value.length === 1) {
-      // setDisabledAttribute(inputsList[i]);
-      inputsList[i].classList.add('paintOrangeLine');
-    } else {
-      inputsList[i].classList.remove('paintOrangeLine');
-    }
-  }
-};
-
-const goToNextInput = () => {
-  for (const [i, inputElement] of inputsList.entries()) {
-    if (inputElement.value.length === 1 && i !== 5) {
-      removeDisabledAttribute(inputsList[i + 1]);
-      inputsList[i + 1].focus();
-    }
-
-    if (inputElement.value.length === 1 && i === 5) {
-      inputElement.parentElement.nextElementSibling.focus();
-      areAllFilled(inputsList) ? setDisabledAttributeForAll(inputsList) : '';
-    }
-  }
-}; // Get all values from inputs
-
-
-const sendValues = () => {
-  let inputValues = [];
-
-  for (let inputValue of inputsList) {
-    if (inputValue.value.length === 1) {
-      inputValues.push(inputValue.value);
-    }
-  }
-
-  result.innerHTML = inputValues.join('');
-}; // Show result in screen after button clicked
-
-
-const btn = document.querySelector('button');
-btn.addEventListener('click', sendValues, true); // Remove disabled attribute from input
-
-const removeDisabledAttribute = elem => {
-  elem.removeAttribute("disabled");
-  ;
-}; // Set disabled attribute from input
-
-
-const setDisabledAttribute = elem => {
-  elem.setAttribute("disabled", '');
-};
-
-const setDisabledAttributeForAll = arr => {
-  for (let input of arr) {
-    input.setAttribute('disabled', '');
-  }
-}; // Remove disabled from the first input
-// to be called in connectedCallback()
-
-
-removeDisabledAttribute(inputsList[0]);
-
-const fill = currentValue => {
-  return currentValue.value.length === 1;
-}; // Check if all fields are filled
-
-
-const areAllFilled = arr => {
-  let newArray = Array.from(arr);
-  return newArray.every(input => input.value.length === 1);
-};
-
-
-
-
-var timeleft = 30;
-        var downloadTimer = setInterval(function(){
-        timeleft--;
-        document.getElementById("countdowntimer2").textContent = timeleft;
-        if(timeleft <= 0)
-            clearInterval(downloadTimer);
-        },1000);
-
-
-
-const result1 = document.querySelector('.result'); // Built n inputs dynamically
-
-const times1 = () => {
-  let inputTemplates = [];
-
-  for (let i = 0; i < 6; i++) {
-    inputTemplates[i] = '<input type="text" onchange="isComplete()" maxlength="1" oninput="goToNextInput()">';
-  }
-
-  let inputCollection = inputTemplates.join('');
-  return inputCollection;
-}; // Mount html template
-
-
-const container2 = document.querySelector('.container2');
-container2.innerHTML = times1(); // Collect the inputs
-
-const inputsList1 = document.querySelectorAll('input'); // onchange setDisabledAttribute
-
-const isComplete1 = () => {
-  for (const [i, inputElement] of inputsList1.entries()) {
-    if (inputElement.value.length === 1) {
-      // setDisabledAttribute(inputsList[i]);
-      inputsList1[i].classList.add('paintOrangeLine');
-    } else {
-      inputsList1[i].classList.remove('paintOrangeLine');
-    }
-  }
-};
-
-const goToNextInput1 = () => {
-  for (const [i, inputElement] of inputsList1.entries()) {
-    if (inputElement.value.length === 1 && i !== 5) {
-      removeDisabledAttribute(inputsList1[i + 1]);
-      inputsList1[i + 1].focus();
-    }
-
-    if (inputElement.value.length === 1 && i === 5) {
-      inputElement.parentElement.nextElementSibling.focus();
-      areAllFilled(inputsList1) ? setDisabledAttributeForAll(inputsList1) : '';
-    }
-  }
-}; // Get all values from inputs
-
-
-const sendValues1 = () => {
-  let inputValues = [];
-
-  for (let inputValue of inputsList1) {
-    if (inputValue.value.length === 1) {
-      inputValues.push(inputValue.value);
-    }
-  }
-
-  result1.innerHTML = inputValues.join('');
-}; // Show result1 in screen after button clicked
-
-
-const btn1 = document.querySelector('button');
-btn.addEventListener('click', sendValues, true); // Remove disabled attribute from input
-
-const removeDisabledAttribute1 = elem => {
-  elem.removeAttribute("disabled");
-  ;
-}; // Set disabled attribute from input
-
-
-const setDisabledAttribute1 = elem => {
-  elem.setAttribute("disabled", '');
-};
-
-const setDisabledAttributeForAll1 = arr => {
-  for (let input of arr) {
-    input.setAttribute('disabled', '');
-  }
-}; // Remove disabled from the first input
-// to be called in connectedCallback()
-
-
-removeDisabledAttribute(inputsList1[0]);
-
-const fill1 = currentValue => {
-  return currentValue.value.length === 1;
-}; // Check if all fields are filled
-
-
-const areAllFilled1 = arr => {
-  let newArray = Array.from(arr);
-  return newArray.every(input => input.value.length === 1);
-};
      
 $(document).ready(function() {
 
@@ -1530,6 +1422,500 @@ $('#loginForm').validate({
             });
           }
     });
+    //upload image jquery
+
+      var input = document.getElementById( 'file-upload' );
+      var infoArea = document.getElementById( 'file-upload-filename' );
+
+      input.addEventListener( 'change', showFileName );
+
+      function showFileName( event ) {
+      
+      // the change event gives us the input it occurred in 
+      var input = event.srcElement;
+      
+      // the input has an array of files in the `files` property, each one has a name that you can use. We're just using the name here.
+      var fileName = input.files[0].name;
+      
+      // use fileName however fits your app best, i.e. add it into a div
+      infoArea.textContent = 'File name: ' + fileName;
+      }
+
+
+    /** sign up form  */
+
+    $('#signup-form').validate({
+    rules: {
+      cust_name : {
+         required: true
+        },
+        cust_mobile: {
+          required: '#cust_email:blank'
+         },
+         cust_email: {
+            required: '#cust_mobile:blank',
+            email: true
+        },
+        cust_password : {
+         required: true,
+         minlength:6
+        },
+        confirm_password :{
+            required: true,
+            minlength: 6,
+            equalTo: "#cust_password"
+        },
+        messages: {
+         confirm_password : {
+            equalTo: "Please enter the same password"
+         }
+        }
+       
+   
+    },
+    highlight: function(element) {
+        $(element).closest('.form-group').addClass('has-error');
+    },
+    unhighlight: function(element) {
+        $(element).closest('.form-group').removeClass('has-error');
+    },
+    errorElement: 'span',
+    errorClass: 'help-block',
+    errorPlacement: function(error, element) {
+        if (element.parent('.input-group').length) {
+            error.insertAfter(element.parent());
+        } else {
+            error.insertAfter(element);
+        }
+    },
+    submitHandler: function (form) {
+        $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+      $('#signup-btn').html('Sending..');
+         $.ajax({
+            url: "/Customer/register",
+            type:"POST",
+            data: $('#signup-form').serialize(),
+            async: true,
+          cache: false,
+            success:function(response){
+               console.log(response);
+                if(response.status == 1) {
+                    document.getElementById("signup-form").reset();
+                    var user_id = response.data.id;
+                    console.log(user_id);
+                    $('.co_confirm').show();
+                    $("#user_id").val( user_id );
+                    $('.co_user').hide();
+                    
+                } else {
+                    
+                    $('#reg_error').html(response.Message);
+                    $('#reg_error').fadeIn().delay(3000).fadeOut();
+
+                    document.getElementById("signup-form").reset();
+
+                }
+                $('#signup-btn').html('Next');
+            },
+            error:function (err) {
+                if (err.status == 422) {
+                      console.log(err.responseJSON);
+            
+                $.each(err.responseJSON.errors, function (i, error) {
+                    var el = $(document).find('[name="'+i+'"]');
+                    el.after($('<span class="filed-error" style="color: #a94442;">'+error[0]+'</span>'));
+                });
+                $('.filed-error').fadeIn().delay(3000).fadeOut();
+                document.getElementById("signup-form").reset();
+                $('#signup-btn').html('Continue');
+
+               }
+           }
+            });
+          }
+    });
+
+
+    /** OTP Form */
+    $('#otp-form').validate({
+    rules: {
+      access_token : {
+         required: true,
+         minlength:4
+        }   
+    },
+    highlight: function(element) {
+        $(element).closest('.form-group').addClass('has-error');
+    },
+    unhighlight: function(element) {
+        $(element).closest('.form-group').removeClass('has-error');
+    },
+    errorElement: 'span',
+    errorClass: 'help-block',
+    errorPlacement: function(error, element) {
+        if (element.parent('.input-group').length) {
+            error.insertAfter(element.parent());
+        } else {
+            error.insertAfter(element);
+        }
+    },
+    submitHandler: function (form) {
+        $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+      // $('#signup-btn').html('Sending..');
+         $.ajax({
+            url: "/Customer/verifyOTP",
+            type:"POST",
+            data: $('#otp-form').serialize(),
+            async: true,
+          cache: false,
+            success:function(response){
+               console.log(response);
+                if(response.status == 1) {
+                    document.getElementById("otp-form").reset();
+                    var user_id = response.data.id;
+                    $("#user_id").val( user_id );
+                    window.location.href = "<?php echo URL::to('Home/index'); ?>";
+                    
+                } else {
+                    
+                    $('#otp_error').html(response.Message);
+                    $('#otp_error').fadeIn().delay(3000).fadeOut();
+
+                    document.getElementById("otp-form").reset();
+
+                }
+            },
+            error:function (err) {
+                if (err.status == 422) {
+                      console.log(err.responseJSON);
+            
+                $.each(err.responseJSON.errors, function (i, error) {
+                    var el = $(document).find('[name="'+i+'"]');
+                    el.after($('<span class="filed-error" style="color: #a94442;">'+error[0]+'</span>'));
+                });
+                $('.filed-error').fadeIn().delay(3000).fadeOut();
+                document.getElementById("otp-form").reset();
+
+               }
+           }
+            });
+          }
+    });
+    /**
+     * sign in from header 
+     * 
+     */
+    $('#head_loginForm').validate({
+    
+
+    rules: {
+        head_customer_email: {
+          required: '#head_customer_mobile:blank'
+         },
+        head_customer_mobile: {
+            required: '#head_customer_email:blank'
+        },
+        head_customer_password: {
+            minlength: 3,
+            maxlength: 15,
+            required: true
+        }
+
+    },
+    highlight: function(element) {
+        $(element).closest('.form-group').addClass('has-error');
+    },
+    unhighlight: function(element) {
+        $(element).closest('.form-group').removeClass('has-error');
+    },
+    errorElement: 'span',
+    errorClass: 'help-block',
+    errorPlacement: function(error, element) {
+        if (element.parent('.input-group').length) {
+            error.insertAfter(element.parent());
+        } else {
+            error.insertAfter(element);
+        }
+    },
+    submitHandler: function (from) {
+        $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+      $('#log_in').html('Sending..');
+        // var param = $("#sendmessage").serialize();
+
+        let customer_email = $('#head_customer_email').val();
+        let customer_mobile = $('#head_customer_mobile').val();
+        let customer_password = $('#head_customer_password').val();
+       /* let subject = $('#subject').val();
+        let message = $('#message').val();
+   */
+            $.ajax({
+            url: "/Customer/login",
+            type:"POST",
+            data:
+
+
+            {
+               'customer_email': customer_email,
+                'customer_mobile': customer_mobile,
+                 'customer_password': customer_password,
+
+            },
+            async: true,
+          cache: false,
+            success:function(response){
+                if(response.status == 1) {
+                  //  alert(response.status);
+                    document.getElementById("loginForm").reset();
+                    window.location.href = "<?php echo URL::to('Home/index'); ?>";
+                } else {
+                    
+                    $('#head_errors').html(response.Message);
+                    $('#head_errors').fadeIn().delay(3000).fadeOut();
+
+                    document.getElementById("head_loginForm").reset();
+
+                }
+                $('#log_in').html('Log In');
+            },
+            error:function (err) {
+                if (err.status == 422) { // when status code is 422, it's a validation issue
+            console.log(err.responseJSON);
+
+           document.getElementById("head_loginForm").reset();
+
+        
+                // $('#errors').fadeIn().html(err.responseJSON.message);
+                // you can loop through the errors object and show it to the user
+                // console.warn(err.responseJSON.errors);
+                // display errors on each form field
+                $.each(err.responseJSON.errors, function (i, error) {
+                    var el = $(document).find('[name="'+i+'"]');
+                    el.after($('<span class="filed-error" style="color: #a94442;">'+error[0]+'</span>'));
+                });
+                $('.filed-error').fadeIn().delay(3000).fadeOut();
+
+              
+                /*document.getElementById("head_loginForm").reset();*/
+                /* $("#head_loginForm").validate().resetForm();*/
+
+                 $('#head_loginForm').trigger("reset");
+
+                // $("#loginForm").find('.filed-error').removeClass("filed-error");
+                // $("#loginForm").find('.has-success').removeClass("has-success");
+                // $('#loginForm').find('.form-control-feedback').remove()
+                $('#log_in').html('Log In');
+
+        }
+           }
+            });
+          }
+    });
+
+    /***
+     * Signup From Header
+     * 
+     */
+    $('#head_signup-form').validate({
+    rules: {
+      head_cust_name : {
+         required: true
+        },
+        head_cust_mobile: {
+          required: '#head_cust_email:blank'
+         },
+         head_cust_email: {
+            required: '#head_cust_mobile:blank',
+            email: true
+        },
+        head_cust_password : {
+         required: true,
+         minlength:6
+        },
+        head_confirm_password :{
+            required: true,
+            minlength: 6,
+            equalTo: "#head_cust_password"
+        },
+        messages: {
+         head_confirm_password : {
+            equalTo: "Please enter the same password"
+         }
+        }
+       
+   
+    },
+    highlight: function(element) {
+        $(element).closest('.form-group').addClass('has-error');
+    },
+    unhighlight: function(element) {
+        $(element).closest('.form-group').removeClass('has-error');
+    },
+    errorElement: 'span',
+    errorClass: 'help-block',
+    errorPlacement: function(error, element) {
+        if (element.parent('.input-group').length) {
+            error.insertAfter(element.parent());
+        } else {
+            error.insertAfter(element);
+        }
+    },
+    submitHandler: function (form) {
+        $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+      $('#head_signup-btn').html('Sending..');
+
+        let cust_name = $('#head_cust_name').val();
+        let cust_email = $('#head_cust_email').val();
+        let cust_mobile = $('#head_cust_mobile').val();
+        let cust_password = $('#head_cust_password').val();
+        let gender = $("input[name='head_gender']:checked").val();
+
+
+         $.ajax({
+            url: "/Customer/register",
+            type:"POST",
+           data:
+            {
+                'cust_name': cust_name,
+                'cust_email': cust_email,
+                'cust_mobile': cust_mobile,
+                'cust_password': cust_password,
+                'gender': gender,
+
+            },
+            async: true,
+          cache: false,
+            success:function(response){
+               console.log(response);
+                if(response.status == 1) {
+                    document.getElementById("head_signup-form").reset();
+                    var user_id = response.data.id;
+                    console.log(user_id);
+                    $('.co_confirm').show();
+                    $("#head_user_id").val( user_id );
+                    $('.co_user').hide();
+                    
+                } else {
+                    
+                    $('#_head_reg_error').html(response.Message);
+                    $('#_head_reg_error').fadeIn().delay(3000).fadeOut();
+
+                    document.getElementById("head_signup-form").reset();
+
+                }
+                $('#head_signup-btn').html('Next');
+            },
+            error:function (err) {
+                if (err.status == 422) {
+                      console.log(err.responseJSON);
+            
+                $.each(err.responseJSON.errors, function (i, error) {
+                    var el = $(document).find('[name="'+i+'"]');
+                    el.after($('<span class="filed-error" style="color: #a94442;">'+error[0]+'</span>'));
+                });
+                $('.filed-error').fadeIn().delay(3000).fadeOut();
+                document.getElementById("signup-form").reset();
+                $('#head_signup-btn').html('Continue');
+
+               }
+           }
+            });
+          }
+    });
+
+
+    /** HEAD OTP Form */
+    $('#head-otp-form').validate({
+    rules: {
+      head_access_token : {
+         required: true,
+         minlength:4
+        }   
+    },
+    highlight: function(element) {
+        $(element).closest('.form-group').addClass('has-error');
+    },
+    unhighlight: function(element) {
+        $(element).closest('.form-group').removeClass('has-error');
+    },
+    errorElement: 'span',
+    errorClass: 'help-block',
+    errorPlacement: function(error, element) {
+        if (element.parent('.input-group').length) {
+            error.insertAfter(element.parent());
+        } else {
+            error.insertAfter(element);
+        }
+    },
+    submitHandler: function (form) {
+        $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+      // $('#signup-btn').html('Sending..');
+
+         let head_user_id = $('#head_user_id').val();
+         let head_access_token = $('#head_access_token').val();
+      
+
+         $.ajax({
+            url: "/Customer/verifyOTP",
+            type:"POST",
+            data: {
+               'user_id' : head_user_id,
+               'access_token' : head_access_token
+            },
+            async: true,
+          cache: false,
+            success:function(response){
+               console.log(response);
+                if(response.status == 1) {
+                    document.getElementById("head-otp-form").reset();
+                  
+                    window.location.href = "<?php echo URL::to('Home/index'); ?>";
+                    
+                } else {
+                    
+                    $('#head_otp_error').html(response.Message);
+                    $('#head_otp_error').fadeIn().delay(3000).fadeOut();
+
+                    document.getElementById("head-otp-form").reset();
+
+                }
+            },
+            error:function (err) {
+                if (err.status == 422) {
+                      console.log(err.responseJSON);
+            
+                $.each(err.responseJSON.errors, function (i, error) {
+                    var el = $(document).find('[name="'+i+'"]');
+                    el.after($('<span class="filed-error" style="color: #a94442;">'+error[0]+'</span>'));
+                });
+                $('.filed-error').fadeIn().delay(3000).fadeOut();
+                document.getElementById("head-otp-form").reset();
+
+               }
+           }
+            });
+          }
+    });
+
 
 });
 
