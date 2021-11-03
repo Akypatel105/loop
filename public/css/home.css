@@ -2128,12 +2128,16 @@ button.next {
     display: none;
     padding: 40px 20px;
 }
-.co_confirm h2{
+.fp_co_confirm {
+    display: none;
+    padding: 40px 20px;
+}
+.co_confirm1 h2{
     position: relative;
     margin-bottom: 48px;
 }
 .confirm-section h6 {
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 500;
     margin-top: 30px;
 }
@@ -2143,7 +2147,7 @@ button.next {
 .confirm-section p{
     font-size: 17px;
 }
-.co_confirm .result {
+.co_confirm1 .result {
     text-align: center;
     color: orange;
     font-size: 2em;
@@ -2151,7 +2155,7 @@ button.next {
     margin-top: 1.5em;
     display: block;
 }
-.co_confirm input {
+.co_confirm1 input {
     border: 0;
     border-bottom: 2px solid #c0c0c0;
     outline: 0;
@@ -2169,20 +2173,20 @@ button.next {
     background-color: transparent;
     transition: border 0.3s ease-in-out;
 }
-.co_confirm button, input {
+.co_confirm1 button, input {
     overflow: visible;
 }
-.co_confirm input:focus {
+.co_confirm1 input:focus {
     border: 0;
     border-bottom: 2px solid #ff9400;
 }
-.co_confirm input:disabled {
+.co_confirm1 input:disabled {
     background: transparent;
 }
-.co_confirm input:last-child {
+.co_confirm1 input:last-child {
     margin-right: 0;
 }
-.co_confirm .paintOrangeLine {
+.co_confirm1 .paintOrangeLine {
     border: 0;
     border-bottom: 2px solid #ff9400;
 }

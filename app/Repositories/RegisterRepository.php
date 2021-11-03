@@ -36,6 +36,17 @@ class RegisterRepository
         return $query;
     }
 
+    public function getUserByEmailorMobile($email, $mobile)
+    {
+        if (!empty($email)) {
+            $query = User::where('email', $email)->get()->toArray();
+        } else {
+            $query = User::where('mobile', $mobile)->get()->toArray();
+        }
+
+        return $query;
+    }
+
     /*
      * set payload data for posts table.
      *

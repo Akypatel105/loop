@@ -166,11 +166,80 @@ class CustomerController extends Controller
                 'Message' => 'User does not exists!!!',
            ]);
         }
+    }
 
-        echo '<pre>';
-        print_r($user[0]['id']);
-        echo '</pre>';
-        exit();
+    public function forgotPassword(Request $request)
+    {
+        $this->validate($request,
+        [
+            'mobile' => 'required_without:email',
+            'email' => 'required_without:mobile',
+       ]);
+
+        $email = $request->email;
+        $mobile = $request->mobile;
+
+        $user = $this->registerRepository->getUserByEmailorMobile($email, $mobile);
+        if (!empty($user)) {
+            $access_token = rand(1000, 9999);
+            $access_token = '1234'; // Remove it once SMS gateway integrated
+            $affected_row = $this->userRepository->updateUserToken($user[0]['id'], $access_token);
+            if (!empty($affected_row)) {
+                return response()->json([
+                    'status' => 1,
+                    'data' => $user,
+                    'Message' => 'Access token successfully updated!!!',
+               ]);
+            } else {
+                return response()->json([
+                    'status' => 0,
+                    'data' => [],
+                    'Message' => 'Something went wrong, please try again later!!!',
+               ]);
+            }
+        } else {
+            return response()->json([
+                'status' => 0,
+                'data' => [],
+                'Message' => 'User does not exists!!!',
+           ]);
+        }
+    }
+
+    public function resetPassword(Request $request)
+    {
+        $this->validate($request,
+        [
+            'user_id' => 'required',
+            'password' => 'required',
+       ]);
+
+        $user_id = $request->user_id;
+        $password = $request->password;
+
+        $user = $this->registerRepository->getUserById($user_id);
+        if (!empty($user)) {
+            $affected_row = $this->userRepository->updatePassword($user[0]['id'], $password);
+            if (!empty($affected_row)) {
+                return response()->json([
+                    'status' => 1,
+                    'data' => $user,
+                    'Message' => 'Password successfully updated!!!',
+               ]);
+            } else {
+                return response()->json([
+                    'status' => 0,
+                    'data' => [],
+                    'Message' => 'Something went wrong, please try again later!!!',
+               ]);
+            }
+        } else {
+            return response()->json([
+                'status' => 0,
+                'data' => [],
+                'Message' => 'User does not exists!!!',
+           ]);
+        }
     }
 
     /**
