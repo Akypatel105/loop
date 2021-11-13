@@ -54,5 +54,7 @@ Route::group(['prefix' => 'Customer'], function () {
 
 Route::group(['prefix' => 'Home'], function () {
     Route::get('/index', [HomeController::class, 'index']);
+    Route::get('/comment/{id}', [HomeController::class, 'postComment']);
+    Route::get('/profile', [HomeController::class, 'profile']);
 });
 Route::post('/logout', [HomeController::class, 'logout']);

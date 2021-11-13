@@ -126,6 +126,7 @@ class PostController extends BaseController
             $validator = Validator::make($request->all(), [
             'customer_id' => 'required',
             'post_type' => 'required',
+            'category_id' => 'required',
             'post_image.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'post_video.*' => 'mimes:mp4,mov,ogg,qt | max:20000',
             ]);
@@ -139,9 +140,11 @@ class PostController extends BaseController
             $customer_id = $request->customer_id;
             $post_type = $request->post_type;
             $post_caption = $request->post_caption;
+            $category_id = $request->category_id;
 
             $post_arr = [
             'customer_id' => $customer_id,
+            'category_id' => $category_id,
             'post_type' => $post_type,
             'post_caption' => $post_caption,
             ];

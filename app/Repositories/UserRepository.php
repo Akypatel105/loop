@@ -19,7 +19,7 @@ class UserRepository
 
     public function isFollowingRequestSent($customer_id, $following_customer_id)
     {
-        $res = Followings::where('customer_id', '=', $customer_id)->where('following_customer_id', '=', $following_customer_id)->get();
+        $res = Followings::where('customer_id', '=', $customer_id)->where('following_customer_id', '=', $following_customer_id)->exists();
 
         return $res;
     }

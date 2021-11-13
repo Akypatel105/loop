@@ -6,6 +6,7 @@ use App\Models\Categories;
 use App\Models\Followers;
 use App\Models\Post;
 use App\Models\PostCommentLike;
+use App\Models\PostComments;
 use App\Models\PostLikes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,12 +14,10 @@ use Illuminate\Support\Facades\DB;
 class PostRepository
 {
     // protected $model;
-
     // public function __construct(User $model)
     // {
     //     $this->model = $model;
     // }
-
     public function getPostById($post_id)
     {
         // DB::enableQueryLog();
@@ -59,7 +58,7 @@ class PostRepository
         }
         $followers_arr[] = (int) $customer_id;
         if ($category_id == 0) {
-            $res = Post::whereIn('customer_id', $followers_arr)->with(['postImage', 'postVideo', 'postLikes', 'postComments', 'user'])->orderBy('created_at', 'desc')->limit(config('constants.PER_PAGE_LIMIT'))->offset(($page_index - 1) * config('constants.PER_PAGE_LIMIT'))->get();
+            $res = Post::whereIn('customer_id', $followers_arr)->with(['postImage', 'postVideo', 'postLikes', 'postComments', 'user', 'postComments.user'])->orderBy('created_at', 'desc')->limit(config('constants.PER_PAGE_LIMIT'))->offset(($page_index - 1) * config('constants.PER_PAGE_LIMIT'))->get();
         } else {
             // DB::enableQueryLog();
             $res = Post::where('category_id', (int) $category_id)->whereIn('customer_id', $followers_arr)->with(['postImage', 'postVideo', 'postLikes', 'postComments', 'user'])->orderBy('created_at', 'desc')->limit(config('constants.PER_PAGE_LIMIT'))->offset(($page_index - 1) * config('constants.PER_PAGE_LIMIT'))->get();
@@ -83,6 +82,19 @@ class PostRepository
         return $res->toArray();
     }
 
+    public function getpostComments($id)
+    {
+        $res = PostComments::where('post_id', '=', $id)->with(['user'])->orderBy('post_id', 'desc')->get()->toArray();
+
+        return $res;
+    }
+
+    public function getpostcaption($id)
+    {
+        $res = Post::where('post_id', '=', $id)->with(['user'])->orderBy('post_id', 'desc')->get()->toArray();
+
+        return $res;
+    }
     /*
      * set payload data for posts table.
      *

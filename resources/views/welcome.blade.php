@@ -23,7 +23,7 @@
             <div class="row row1">
                <div class="col-lg-4">
                   <div class="logo_1">
-                     <a href="home.html"><img src="{{ asset('image/logo.png') }}"></a>
+                     <a href=""><img src="{{ asset('image/logo.png') }}"></a>
                   </div>
                </div>
                <div class="col-lg-8">
@@ -1013,6 +1013,7 @@
                      <div class="sign-in-form1">
                         <form id="head_forgot-password-form" class="form-horizontal" method="post" action="javascript:void(0)">
                            @csrf
+                           <div id="head_fp_otp_error" class="help-block"> </div>  
                            <div class="text form-group">
                               <label class="col-xs-3 control-label"><i class="fal fa-phone-volume"></i></label>
                               <div class="col-xs-5">
@@ -1033,15 +1034,15 @@
                   </div>
 
                   <!---------- OPT-modal --------------->
-                  <div class="co_thumps co_thumps1 co_confirm">
+                  <div class="co_thumps co_thumps1 fp_co_confirm co_confirm1">
                      <h2><i class="arrow fal fa-chevron-left"></i></h2>
                      <div class="confirm-section">
                      <h6>Enter 4 digits verification code sent to your mobile/email</h6>
                            <form  id="head-otp-form" class="form-horizontal" method="post" action="javascript:void(0)">
                               @csrf
-                              <input type="hidden" id="head_user_id" name="head_user_id">
+                              <input type="hidden" id="head_user_id" name="re_user_id">
                               <div class="form-group">
-                                 <input class="otp login-control" name="head_access_token" id="head_access_token" type="text" maxlength=4 >
+                                 <input class="otp login-control" name="head_access_token" id="head_access_token" type="number" maxlength=4 >
                               </div>
                                <div id="head_otp_error" class="help-block"> </div>
                               <button class='btn customBtn'>Verify OTP</button>
@@ -1050,23 +1051,34 @@
                   </div>
 
                   <!---------- reset password-modal --------------->
-                  <div class="co_thumps co_thumps1 co_sign-in co_reset">
+                  <div class="co_thumps co_thumps1 co_sign-in co_reset head_co_reset">
                      <h2><i class="arrow fal fa-chevron-left"></i>reset password</h2>
+                    <div id="head_reset-error" class="help-block"> </div>
                      <div class="sign-again">
                         <p>Your new password must be different from previously used password</p>
                      </div>
                      <div class="sign-in-form1">
-                        <form>
-                           <div class="text">
-                              <i class="fal fa-lock-alt"></i>
-                              <input type="text" placeholder="New Password" name="Password" value="" required>
+                        <form id="head_reset-form" class="form-horizontal" method="post" action="javascript:void(0)"> 
+
+                            @csrf
+
+                              <input type="hidden" id="head_user_id" value="" name="head_user_id">
+
+                           <div class="text  form-group">
+                                 <label class="col-xs-3 control-label"> <i class="fal fa-lock-alt"></i></label>
+                            <div class="col-xs-5">
+                              <input type="password" placeholder="New Password" name="head_reset_password" id="head_reset_password" required>
                            </div>
-                           <div class="text">
-                              <i class="fal fa-lock-alt"></i>
-                              <input type="text" placeholder="Confirm Password" name="Password" value="" required>
+                         </div>
+                           <div class="text form-group">
+                            <label class="col-xs-3 control-label"> <i class="fal fa-lock-alt"></i></label>
+                             <div class="col-xs-5">
+                              <input type="password" placeholder="Confirm Password" name="head_reset_confirm_password" id="head_reset_confirm_password" required>
+                            </div>
                            </div>
+                            <button class="next">Create & Save</button>
                         </form>
-                        <button class="next">Create & Save</button>
+                       
                      </div>
                   </div>
                </div>
@@ -1927,7 +1939,9 @@ $('#loginForm').validate({
                 if(response.status == 1) {
                     document.getElementById("head-otp-form").reset();
                   
-                    window.location.href = "<?php echo URL::to('Home/index'); ?>";
+                    $('.co_confirm1').hide();
+                    $("#head_user_id").val( head_user_id );
+                    $('.head_co_reset').show();
                     
                 } else {
                     
@@ -1954,6 +1968,92 @@ $('#loginForm').validate({
             });
           }
     });
+
+      /*header reset password*/
+
+      $('#head_reset-form').validate({
+    rules: {
+      head_reset_password : {
+         required: true,
+         minlength:6
+        },   
+        head_reset_confirm_password :{
+            required: true,
+            minlength: 6,
+            equalTo: "#head_reset_password"
+        },
+    },
+    highlight: function(element) {
+        $(element).closest('.form-group').addClass('has-error');
+    },
+    unhighlight: function(element) {
+        $(element).closest('.form-group').removeClass('has-error');
+    },
+    errorElement: 'span',
+    errorClass: 'help-block',
+    errorPlacement: function(error, element) {
+        if (element.parent('.input-group').length) {
+            error.insertAfter(element.parent());
+        } else {
+            error.insertAfter(element);
+        }
+    },
+    submitHandler: function (form) {
+        $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+
+         let re_user_id = $('#head_user_id').val();
+         let reset_assword = $('#head_reset_password').val();
+      
+
+         $.ajax({
+            url: "/Customer/resetPassword",
+            type:"POST",
+            data: {
+               'user_id' : re_user_id,
+               'password' : reset_assword
+            },
+            async: true,
+          cache: false,
+            success:function(response){
+               console.log(response);
+                if(response.status == 1){
+                  //   $('.co_reset').hide();
+                  //   $('.fp_co_confirm').hide();
+                  //   $('.co_sign-in').show();
+                    document.getElementById("head_reset-form").reset();
+
+                     window.location.href = "<?php echo URL::to('/'); ?>";
+
+                    
+                } else {
+                    
+                    $('#head_reset-error').html(response.Message);
+                    $('#head_reset-error').fadeIn().delay(3000).fadeOut();
+                    document.getElementById("head_reset-form").reset();
+
+                }
+            },
+            error:function (err) {
+                if (err.status == 422) {
+                      console.log(err.responseJSON);
+            
+                $.each(err.responseJSON.errors, function (i, error) {
+                    var el = $(document).find('[name="'+i+'"]');
+                    el.after($('<span class="filed-error" style="color: #a94442;">'+error[0]+'</span>'));
+                });
+                $('.filed-error').fadeIn().delay(3000).fadeOut();
+                document.getElementById("fp-otp-form").reset();
+
+               }
+           }
+            });
+          }
+    });
+
 
 
        /** forgot - password */
@@ -2012,6 +2112,7 @@ $('#loginForm').validate({
                     $('.fp_co_confirm').show();
                     $("#fp_user_id").val( user_id );
                     $('.co_confirm').hide();
+                    $('.co_for').hide();
 
                 } else {
                     
@@ -2199,80 +2300,204 @@ $('#loginForm').validate({
             });
           }
     });
-    /***
+      /***
     
     Header Fogot Password Form
      */
     $('#head_forgot-password-form').validate({
-    rules: {
-      head_fp_mobile: {
-          required: '#head_fp_email:blank'
-         },
-         head_fp_email: {
-            required: '#head_fp_mobile:blank',
-            email: true
+
+rules:{
+  head_fp_mobile: {
+      required:'#head_fp_email:blank',
+     },
+     head_fp_email: {
+        required:'#head_fp_mobile:blank',
+        email: true
+    },
+},
+highlight: function(element) {
+    $(element).closest('.form-group').addClass('has-error');
+},
+unhighlight: function(element) {
+    $(element).closest('.form-group').removeClass('has-error');
+},
+
+
+errorElement: 'span',
+errorClass: 'help-block',
+
+
+errorPlacement: function(error, element) {
+    if (element.parent('.input-group').length) {
+        error.insertAfter(element.parent());
+    } else {
+        error.insertAfter(element);
+    }
+},
+submitHandler: function (form) {
+    $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+      }
+  });
+  // $('#signup-btn').html('Sending..');
+
+     let fp_mobile = $('#head_fp_mobile').val();
+     let fp_email = $('#head_fp_email').val();
+  
+
+     $.ajax({
+        url: "/Customer/forgotPassword",
+        type:"POST",
+        data: {
+           'mobile' : fp_mobile,
+           'email' : fp_email
         },
-    },
-    highlight: function(element) {
-        $(element).closest('.form-group').addClass('has-error');
-    },
-    unhighlight: function(element) {
-        $(element).closest('.form-group').removeClass('has-error');
-    },
-    errorElement: 'span',
-    errorClass: 'help-block',
-    errorPlacement: function(error, element) {
-        if (element.parent('.input-group').length) {
-            error.insertAfter(element.parent());
-        } else {
-            error.insertAfter(element);
-        }
-    },
-    submitHandler: function (form) {
-        $.ajaxSetup({
-          headers: {
-              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          }
-      });
-      // $('#signup-btn').html('Sending..');
+        async: true,
+      cache: false,
+        success:function(response){
+            if(response.status == 1) {
+              /*  document.getElementById("head_forgot-password-form").reset();*/
 
-         let fp_mobile = $('#head_fp_mobile').val();
-         let fp_email = $('#head_fp_email').val();
-      
+                 console.log(response);
+                document.getElementById("head_forgot-password-form").reset();
+                var user_id = response.data[0]['id'];
+                console.log(user_id);
+              
+                $("#head_user_id").val( user_id ); 
+                $('.co_confirm1').show();
 
-         $.ajax({
-            url: "/Customer/forgotPassword",
-            type:"POST",
-            data: {
-               'mobile' : fp_mobile,
-               'email' : fp_email
-            },
-            async: true,
-          cache: false,
-            success:function(response){
-                if(response.status == 1) {
-                    document.getElementById("head_forgot-password-form").reset();
-                  //   window.location.href = "<?php //echo URL::to('Home/index');?>";
-                } else {
-                    
-                    $('#head_fp_otp_error').html(response.Message);
-                    $('#head_fp_otp_error').fadeIn().delay(3000).fadeOut();
-                    document.getElementById("head_forgot-password-form").reset();
-                }
-            },
-            error:function (err) {
-                if (err.status == 422) {
-                  $.each(err.responseJSON.errors, function (i, error) {
-                     var el = $(document).find('[name="'+i+'"]');
-                     el.after($('<span class="filed-error" style="color: #a94442;">'+error[0]+'</span>'));
-                  });
-                  $('.filed-error').fadeIn().delay(3000).fadeOut();
-                  document.getElementById("head_forgot-password-form").reset();
-               }
-           }
+
+              //   window.location.href = "<?php //echo URL::to('Home/index');?>";
+            } else {
+                
+                $('#head_fp_otp_error').html(response.Message);
+                $('#head_fp_otp_error').fadeIn().delay(3000).fadeOut();
+                console.log('1234');
+                document.getElementById("head_forgot-password-form").reset();
+            }
+        },
+       error:function (err) {
+            if (err.status == 422) {
+                  console.log(err.responseJSON);
+
+                 //   $('.co_for').show();
+        
+            $.each(err.responseJSON.errors, function (i, error) {
+                var el = $(document).find('[name="'+i+'"]');
+                el.after($('<span class="filed-error" style="color: #a94442;">'+error[0]+'</span>'));
             });
-          }
-    });
+
+            
+          
+            $('.filed-error').fadeIn().delay(3000).fadeOut();
+            document.getElementById("head_forgot-password-form").reset();
+
+           }
+        }
+        });
+      }
+});
+
+/***
+    
+    Header Fogot Password Form
+     */
+    $('#head_forgot-password-form').validate({
+
+rules:{
+  head_fp_mobile: {
+      required:'#head_fp_email:blank',
+     },
+     head_fp_email: {
+        required:'#head_fp_mobile:blank',
+        email: true
+    },
+},
+highlight: function(element) {
+    $(element).closest('.form-group').addClass('has-error');
+},
+unhighlight: function(element) {
+    $(element).closest('.form-group').removeClass('has-error');
+},
+
+
+errorElement: 'span',
+errorClass: 'help-block',
+
+
+errorPlacement: function(error, element) {
+    if (element.parent('.input-group').length) {
+        error.insertAfter(element.parent());
+    } else {
+        error.insertAfter(element);
+    }
+},
+submitHandler: function (form) {
+    $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+      }
+  });
+  // $('#signup-btn').html('Sending..');
+
+     let fp_mobile = $('#head_fp_mobile').val();
+     let fp_email = $('#head_fp_email').val();
+  
+
+     $.ajax({
+        url: "/Customer/forgotPassword",
+        type:"POST",
+        data: {
+           'mobile' : fp_mobile,
+           'email' : fp_email
+        },
+        async: true,
+      cache: false,
+        success:function(response){
+            if(response.status == 1) {
+              /*  document.getElementById("head_forgot-password-form").reset();*/
+
+                 console.log(response);
+                document.getElementById("head_forgot-password-form").reset();
+                var user_id = response.data[0]['id'];
+                console.log(user_id);
+              
+                $("#head_user_id").val( user_id ); 
+                $('.co_confirm1').show();
+
+
+              //   window.location.href = "<?php //echo URL::to('Home/index');?>";
+            } else {
+                
+                $('#head_fp_otp_error').html(response.Message);
+                $('#head_fp_otp_error').fadeIn().delay(3000).fadeOut();
+                console.log('1234');
+                document.getElementById("head_forgot-password-form").reset();
+            }
+        },
+       error:function (err) {
+            if (err.status == 422) {
+                  console.log(err.responseJSON);
+
+                 //   $('.co_for').show();
+        
+            $.each(err.responseJSON.errors, function (i, error) {
+                var el = $(document).find('[name="'+i+'"]');
+                el.after($('<span class="filed-error" style="color: #a94442;">'+error[0]+'</span>'));
+            });
+
+            
+          
+            $('.filed-error').fadeIn().delay(3000).fadeOut();
+            document.getElementById("head_forgot-password-form").reset();
+
+           }
+        }
+        });
+      }
+});
+
 
 
 

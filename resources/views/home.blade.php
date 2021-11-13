@@ -1,87 +1,4 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-	<title>LOOP</title>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/home.css')}}">
-	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300;400;600;700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css">
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick-theme.min.css">
-	<link rel="icon" href="{{ asset('image/logo.png')}}">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<style type="text/css">
-/*.your i{
-	color: white;
-}
-.your i:hover{
-	color: white;
-	text-decoration: none;
-}*/
-</style>
-</head>
-<body class="body">
-	<div class="co_header">
-		<div class="container">
-			<div class="row row1">
-				<div class="col-lg-6">
-				    <div class="row row1">
-				        <div class="col-lg-4">
-				        	<div class="logo">
-				        		<a href="home.html"><img src="{{ asset('image/logo.png')}}"></a>
-				        	</div>
-				        </div>
-				        <div class="col-lg-8">
-				        	<ul class="menu">
-				        		<li><a href="home.html"><i class="fas fa-home"></i></a></li>
-				        		<li><a href="#"><i class="fab fa-facebook-messenger"></i></a></li>
-						        <li><a href="#"><i class="fas fa-tv"></i></a></li>
-					        </ul>
-				        </div>
-				    </div>
-				</div>
-				<div class="col-lg-6">
-					<div class="row row1">
-				        <div class="col-lg-8">
-				        	<div class="search-box">
-				            	<i class="far fa-search"></i>
-				            	<input type="text" placeholder="Search">
-				            </div>
-				        </div>
-				        <div class="col-lg-1">
-				        	<div class="notification" data-toggle="modal" data-target="#form1">
-				        		<i class="far fa-bell"></i>
-				        	</div>
-				        </div>
-				        <div class="col-lg-3">
-				        	<div class="user-profile">
-								<div class="dropdown">
-                                    <div type="button" class="dropdown-toggle" data-toggle="dropdown">
-                                        <img src="{{ asset('image/user.jpg')}}">
-                                    </div>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="user-profile.html"><span><i class="far fa-user"></i> profile</span></a>
-                                        <a class="dropdown-item" href="#"><span><i class="fal fa-cog"></i>setting</span></a>
-                                        <a class="dropdown-item" href="#"><span><i class="far fa-bookmark"></i> saved</span></a>
-                                        <div class="dropdown-divider"><span><i class="far fa-sync-alt"></i> switch accounts</span></div>
-                                        <form id="form1" action="{{ url('/logout') }}" method="post">
-                                        @csrf
-                                            <a href="javascript:;" class="dropdown-item" onclick="document.getElementById('form1').submit();">log out</a>
-                                        </form>
-                                        <!-- <a class="dropdown-item" href="{{ url('/logout') }}"><span>log out</span></a> -->
-                                    </div>
-                                </div>
-						    </div>
-				        </div>
-				    </div>
-			    </div>
-		    </div>
-	    </div>
-	</div>
+@include('layouts.header') 
 	<div class="main-body">
 		<div class="container">
 			<div class="row">
@@ -123,68 +40,7 @@
 				</div>
 				<div class="col-lg-6">
 					<div class="co_middle-section">
-						<!-- <div class="m_section1">
-							<div class="slider slider-nav">
-								<div>
-								    <div class="story-1">
-								    	<div class="your">
-								    		<a href="new-post.html"><i class="fal fa-plus"></i></a>
-								    	</div>
-								    	<h6>your story</h6>
-								    </div>
-								</div>
-								<div>
-								    <div class="story-1">
-								    	<div type="button" data-toggle="modal" data-target="#myModal">
-								    		<img src="image/status-1.png">
-								    	</div>
-								    	<h6>jane</h6>
-								    </div>
-								</div>
-								<div>
-								    <div class="story-1">
-								    	<img src="image/status-2.png">
-								    	<h6>Esther</h6>
-								    </div>
-								</div>
-								<div>
-								    <div class="story-1">
-								    	<img src="image/status-3.jpg">
-								    	<h6>jacob@123</h6>
-								    </div>
-								</div>
-								<div>
-								    <div class="story-1">
-								    	<img src="image/status-4.png">
-								    	<h6>Brayden</h6>
-								    </div>
-								</div>
-								<div>
-								    <div class="story-1">
-								    	<img src="image/status-5.jpg">
-								    	<h6>Coinneach</h6>
-								    </div>
-								</div>
-								<div>
-								    <div class="story-1">
-								    	<img src="image/status-6.jpg">
-								    	<h6>Devin</h6>
-								    </div>
-								</div>
-								<div>
-								    <div class="story-1">
-								    	<img src="image/status-7.jpg">
-								    	<h6>Marco</h6>
-								    </div>
-								</div>
-								<div>
-								    <div class="story-1">
-								    	<img src="image/status-8.jpg">
-								    	<h6>Driss</h6>
-								    </div>
-								</div>
-                            </div>
-						</div> -->
+					
 						<div class="m_section1">
 							<div class="slider slider-nav">
 								<div>
@@ -247,736 +103,95 @@
                             </div>
 						</div>
 						<div class="m_section2">
+							@foreach($post as $p)
 							<div class="set-section2 image pubg mine-craft">
 								<div class="main-user-image">
-								    <div class="user-image">
-                                    	<img src="{{ asset('image/status-1.png')}}">
-                                    	<h3>jane</h3>
-                                    </div>
-                                    <div class="user-dots" data-toggle="modal" data-target="#form">
-                                    	<i class="fal fa-ellipsis-h"></i>
-                                    </div>
-                                </div>
+									<div class="user-image">
+										@if($p['user']['profile_image']=='')
+										<img src="{{ asset('profile_images/default.png')}}">
+										@else
+										<img src="{{ asset('profile_images/'.$p['user']['profile_image']) }}">
+										@endif
+										<h3>{{$p['user']['name']}}</h3>
+									</div>
+									<div class="user-dots" data-toggle="modal" data-target="#form">
+										<i class="fal fa-ellipsis-h"></i>
+									</div>
+								</div>
 								<div class="slider slider-nav1">
-                                    <div>
-                                    	<div class="feed-image">
-                                    		<img src="{{ asset('image/game-3.jpg')}}">
-                                    	</div>
-                                    </div>
-                                    <div>
-                                    	<div class="feed-image">
-                                    		<img src="{{ asset('image/game-2.jpg')}}">
-                                    	</div>
-                                    </div>
-                                    <div>
-                                    	<div class="feed-image">
-                                    		<img src="{{ asset('image/game-1.jpg')}}">
-                                    	</div>
-                                    </div>
-                                </div>
-                                <div class="caption-section">
-                                	<div class="inner-caption">
-                                	<div class="like-section">
-                                	    <ul>
-                                	    	<li><i class="far fa-heart"></i><span>200</span></li>
-                                		    <li><i class="far fa-comment-dots"><span>355</span></i></li>
-                                		</ul>
-                                	</div>
-                                	<div class="views"><a href="#">384,232 views</a></div>
-                                	<div class="caption-text">
-                                	    <a href="#">jane</a>
-                                	    <span data-collapse-limit="70">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</span>
-                                	</div>
-                                	<div class="total-comment">
-                                		<a href="comment.html">View all <span>355</span> comments </a>
-                                	</div>
-                                	<div class="caption-text caption-text1">
-                                		<div>
-                                	    	<a href="#">Esther</a>
-                                	    	<span>Lorem Ipsum is simply dummy text</span>
-                                	    </div>
-                                	    <div>
-                                	    	<i class="far fa-heart"></i>
-                                	    </div>
-                                	</div>
-                                	<div class="caption-text caption-text1">
-                                		<div>
-                                		    <a href="#">jacob@123</a>
-                                		    <span>Lorem Ipsum is simply dummy text</span>
-                                		</div>
-                                		<div>
-                                			<i class="far fa-heart"></i>
-                                		</div>
-                                	</div>
-                                </div>
-                                	<div class="comment-fillup">
-                                		<form>
-                                			<div class="emoji-section">
-                                				<i class="far fa-smile"></i>
-                                			</div>
-                                			<textarea placeholder="Add a comments..."></textarea>
-                                			<input type="submit" value="post">
-                                		</form>
-                                	</div>
-                                </div>
+									@if($p['post_type']==1)
+									@if(count($p['post_image']) != 0)
+									@foreach($p['post_image'] as $image)
+									<div>
+										<div class="feed-image">
+										<img src="{{ asset('post_assets/image/'.$image['post_image']) }}">
+										</div>
+									</div>
+									@endforeach 
+									@else
+									<div>
+										<div class="feed-image">
+										<img src="{{ asset('post_assets/image/dummypost.jpg')}}">
+										</div>
+									</div>
+									@endif
+									@else
+									@if(count($p['post_video']) != 0)
+									@foreach($p['post_video'] as $video)
+									<div>
+										<div class="feed-image">
+										<video autoplay="" loop="" controls="" >
+											<source type="video/mp4"src="{{ asset('post_assets/video/'.$video['post_video']) }}">
+										</video>
+										</div>
+									</div>
+									@endforeach
+									@endif
+									@endif
+								</div>
+								<div class="caption-section">
+									<div class="inner-caption">
+										<div class="like-section">
+										<ul>
+											<li><i class="far fa-heart"></i> @if(!empty(count($p['post_likes'])))<span>{{count($p['post_likes'])}}</span> @endif</li>
+											<li><i class="far fa-comment-dots">@if(!empty(count($p['post_comments'])))<span>{{count($p['post_comments'])}}</span>@endif</i></li>
+										</ul>
+										</div>
+										<div class="caption-text">
+										<a href="#">{{$p['user']['name']}}</a>
+										<span data-collapse-limit="70">{{$p['post_caption']}}</span>
+										</div>
+										<div class="total-comment">
+										<a href="{{url('Home/comment')}}/{{$p['post_id']}}">View all <span>{{count($p['post_comments'])}}</span> comments </a>
+										</div>
+										@php
+										$post_comments_array1=array_reverse($p['post_comments']);
+										$post_comments_array=array_slice($post_comments_array1, -2, 2, true);
+										@endphp
+										@foreach($post_comments_array as $p)
+										<div class="caption-text caption-text1">
+										<div class="col-md-12">
+											<a href="#">{{$p['user']['name']}}</a>
+											<span>{{$p['post_comment']}}</span>
+										</div>
+										<div>
+											<i class="far fa-heart"></i>
+										</div>
+										</div>
+										@endforeach
+									</div>
+									<div class="comment-fillup">
+										<form>
+										<div class="emoji-section">
+											<i class="far fa-smile"></i>
+										</div>
+										<textarea placeholder="Add a comments..."></textarea>
+										<input type="submit" value="post">	
+										</form>
+									</div>
+								</div>
 							</div>
-							<div class="set-section2 image chess checkers">
-								<div class="main-user-image">
-								    <div class="user-image">
-                                    	<img src="{{ asset('image/status-4.png')}}">
-                                    	<h3>Brayden</h3>
-                                    </div>
-                                    <div class="user-dots" data-toggle="modal" data-target="#form">
-                                    	<i class="fal fa-ellipsis-h"></i>
-                                    </div>
-                                </div>
-								<div class="slider slider-nav1">
-                                    <div>
-                                    	<div class="feed-image">
-                                    		<img src="{{ asset('image/game-4.jpg')}}">
-                                    	</div>
-                                    </div>
-                                    <div>
-                                    	<div class="feed-image">
-                                    		<img src="{{ asset('image/game-5.jpg')}}">
-                                    	</div>
-                                    </div>
-                                    <div>
-                                    	<div class="feed-image">
-                                    		<img src="{{ asset('image/game-6.jpg')}}">
-                                    	</div>
-                                    </div>
-                                </div>
-                                <div class="caption-section">
-                                	<div class="inner-caption">
-                                	<div class="like-section">
-                                	    <ul>
-                                	    	<li><i class="far fa-heart"></i><span>200</span></li>
-                                		    <li><i class="far fa-comment-dots"><span>355</span></i></li>
-                                		</ul>
-                                	</div>
-                                	<div class="views"><a href="#">384,232 views</a></div>
-                                	<div class="caption-text">
-                                	    <a href="#">Brayden</a>
-                                	    <span data-collapse-limit="70">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</span>
-                                	</div>
-                                	<div class="total-comment">
-                                		<a href="comment.html">View all <span>355</span> comments </a>
-                                	</div>
-                                	<div class="caption-text caption-text1">
-                                		<div>
-                                	    	<a href="#">Esther</a>
-                                	    	<span>Lorem Ipsum is simply dummy text</span>
-                                	    </div>
-                                	    <div>
-                                	    	<i class="far fa-heart"></i>
-                                	    </div>
-                                	</div>
-                                	<div class="caption-text caption-text1">
-                                		<div>
-                                		    <a href="#">jacob@123</a>
-                                		    <span>Lorem Ipsum is simply dummy text</span>
-                                		</div>
-                                		<div>
-                                			<i class="far fa-heart"></i>
-                                		</div>
-                                	</div>
-                                </div>
-                                	<div class="comment-fillup">
-                                		<form>
-                                			<div class="emoji-section">
-                                				<i class="far fa-smile"></i>
-                                			</div>
-                                			<textarea placeholder="Add a comments..."></textarea>
-                                			<input type="submit" value="post">
-                                		</form>
-                                	</div>
-                                </div>
-							</div>
-							<div class="set-section2 image goose">
-								<div class="main-user-image">
-								    <div class="user-image">
-                                    	<img src="{{ asset('image/status-7.jpg')}}">
-                                    	<h3>Marco</h3>
-                                    </div>
-                                    <div class="user-dots" data-toggle="modal" data-target="#form">
-                                    	<i class="fal fa-ellipsis-h"></i>
-                                    </div>
-                                </div>
-								<div class="slider slider-nav1">
-                                    <div>
-                                    	<div class="feed-image">
-                                    		<img src="{{ asset('image/game-7.jpg')}}">
-                                    	</div>
-                                    </div>
-                                    <div>
-                                    	<div class="feed-image">
-                                    		<img src="{{ asset('image/game-8.jpg')}}">
-                                    	</div>
-                                    </div>
-                                    <div>
-                                    	<div class="feed-image">
-                                    		<img src="{{ asset('image/game-9.jpg')}}">
-                                    	</div>
-                                    </div>
-                                </div>
-                                <div class="caption-section">
-                                	<div class="inner-caption">
-                                	<div class="like-section">
-                                	    <ul>
-                                	    	<li><i class="far fa-heart"></i><span>200</span></li>
-                                		    <li><i class="far fa-comment-dots"><span>355</span></i></li>
-                                		</ul>
-                                	</div>
-                                	<div class="views"><a href="#">384,232 views</a></div>
-                                	<div class="caption-text">
-                                	    <a href="#">Marco</a>
-                                	    <span data-collapse-limit="70">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</span>
-                                	</div>
-                                	<div class="total-comment">
-                                		<a href="comment.html">View all <span>355</span> comments </a>
-                                	</div>
-                                	<div class="caption-text caption-text1">
-                                		<div>
-                                	    	<a href="#">Esther</a>
-                                	    	<span>Lorem Ipsum is simply dummy text</span>
-                                	    </div>
-                                	    <div>
-                                	    	<i class="far fa-heart"></i>
-                                	    </div>
-                                	</div>
-                                	<div class="caption-text caption-text1">
-                                		<div>
-                                		    <a href="#">jacob@123</a>
-                                		    <span>Lorem Ipsum is simply dummy text</span>
-                                		</div>
-                                		<div>
-                                			<i class="far fa-heart"></i>
-                                		</div>
-                                	</div>
-                                </div>
-                                	<div class="comment-fillup">
-                                		<form>
-                                			<div class="emoji-section">
-                                				<i class="far fa-smile"></i>
-                                			</div>
-                                			<textarea placeholder="Add a comments..."></textarea>
-                                			<input type="submit" value="post">
-                                		</form>
-                                	</div>
-                                </div>
-							</div>
-							<div class="set-section2 image ludo mine-craft">
-								<div class="main-user-image">
-								    <div class="user-image">
-                                    	<img src="{{ asset('image/status-2.png')}}">
-                                    	<h3>Esther</h3>
-                                    </div>
-                                    <div class="user-dots" data-toggle="modal" data-target="#form">
-                                    	<i class="fal fa-ellipsis-h"></i>
-                                    </div>
-                                </div>
-								<div class="slider slider-nav1">
-                                    <div>
-                                    	<div class="feed-image">
-                                    		<img src="{{ asset('image/game-10.jpg')}}">
-                                    	</div>
-                                    </div>
-                                    <div>
-                                    	<div class="feed-image">
-                                    		<img src="{{ asset('image/game-11.jpg')}}">
-                                    	</div>
-                                    </div>
-                                    <div>
-                                    	<div class="feed-image">
-                                    		<img src="{{ asset('image/game-1.jpg')}}">
-                                    	</div>
-                                    </div>
-                                </div>
-                                <div class="caption-section">
-                                	<div class="inner-caption">
-                                	<div class="like-section">
-                                	    <ul>
-                                	    	<li><i class="far fa-heart"></i><span>200</span></li>
-                                		    <li><i class="far fa-comment-dots"><span>355</span></i></li>
-                                		</ul>
-                                	</div>
-                                	<div class="views"><a href="#">384,232 views</a></div>
-                                	<div class="caption-text">
-                                	    <a href="#">Esther</a>
-                                	    <span data-collapse-limit="70">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</span>
-                                	</div>
-                                	<div class="total-comment">
-                                		<a href="comment.html">View all <span>355</span> comments </a>
-                                	</div>
-                                	<div class="caption-text caption-text1">
-                                		<div>
-                                	    	<a href="#">Marco</a>
-                                	    	<span>Lorem Ipsum is simply dummy text</span>
-                                	    </div>
-                                	    <div>
-                                	    	<i class="far fa-heart"></i>
-                                	    </div>
-                                	</div>
-                                	<div class="caption-text caption-text1">
-                                		<div>
-                                		    <a href="#">jacob@123</a>
-                                		    <span>Lorem Ipsum is simply dummy text</span>
-                                		</div>
-                                		<div>
-                                			<i class="far fa-heart"></i>
-                                		</div>
-                                	</div>
-                                </div>
-                                	<div class="comment-fillup">
-                                		<form>
-                                			<div class="emoji-section">
-                                				<i class="far fa-smile"></i>
-                                			</div>
-                                			<textarea placeholder="Add a comments..."></textarea>
-                                			<input type="submit" value="post">
-                                		</form>
-                                	</div>
-                                </div>
-							</div>
-							<div class="set-section2 image free-fire">
-								<div class="main-user-image">
-								    <div class="user-image">
-                                    	<img src="{{ asset('image/status-5.jpg')}}">
-                                    	<h3>Coinneach</h3>
-                                    </div>
-                                    <div class="user-dots" data-toggle="modal" data-target="#form">
-                                    	<i class="fal fa-ellipsis-h"></i>
-                                    </div>
-                                </div>
-								<div class="slider slider-nav1">
-                                    <div>
-                                    	<div class="feed-image">
-                                    		<img src="{{ asset('image/game-2.jpg')}}">
-                                    	</div>
-                                    </div>
-                                    <div>
-                                    	<div class="feed-image">
-                                    		<img src="{{ asset('image/game-3.jpg')}}">
-                                    	</div>
-                                    </div>
-                                    <div>
-                                    	<div class="feed-image">
-                                    		<img src="{{ asset('image/game-4.jpg')}}">
-                                    	</div>
-                                    </div>
-                                </div>
-                                <div class="caption-section">
-                                	<div class="inner-caption">
-                                	<div class="like-section">
-                                	    <ul>
-                                	    	<li><i class="far fa-heart"></i><span>200</span></li>
-                                		    <li><i class="far fa-comment-dots"><span>355</span></i></li>
-                                		</ul>
-                                	</div>
-                                	<div class="views"><a href="#">384,232 views</a></div>
-                                	<div class="caption-text">
-                                	    <a href="#">Coinneach</a>
-                                	    <span data-collapse-limit="70">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</span>
-                                	</div>
-                                	<div class="total-comment">
-                                		<a href="comment.html">View all <span>355</span> comments </a>
-                                	</div>
-                                	<div class="caption-text caption-text1">
-                                		<div>
-                                	    	<a href="#">Marco</a>
-                                	    	<span>Lorem Ipsum is simply dummy text</span>
-                                	    </div>
-                                	    <div>
-                                	    	<i class="far fa-heart"></i>
-                                	    </div>
-                                	</div>
-                                	<div class="caption-text caption-text1">
-                                		<div>
-                                		    <a href="#">jacob@123</a>
-                                		    <span>Lorem Ipsum is simply dummy text</span>
-                                		</div>
-                                		<div>
-                                			<i class="far fa-heart"></i>
-                                		</div>
-                                	</div>
-                                </div>
-                                	<div class="comment-fillup">
-                                		<form>
-                                			<div class="emoji-section">
-                                				<i class="far fa-smile"></i>
-                                			</div>
-                                			<textarea placeholder="Add a comments..."></textarea>
-                                			<input type="submit" value="post">
-                                		</form>
-                                	</div>
-                                </div>
-							</div>
-							<div class="set-section2 image counter-strike checkers">
-								<div class="main-user-image">
-								    <div class="user-image">
-                                    	<img src="{{ asset('image/status-3.jpg')}}">
-                                    	<h3>jacob@123</h3>
-                                    </div>
-                                    <div class="user-dots" data-toggle="modal" data-target="#form">
-                                    	<i class="fal fa-ellipsis-h"></i>
-                                    </div>
-                                </div>
-								<div class="slider slider-nav1">
-                                    <div>
-                                    	<div class="feed-image">
-                                    		<img src="{{ asset('image/game-5.jpg')}}">
-                                    	</div>
-                                    </div>
-                                    <div>
-                                    	<div class="feed-image">
-                                    		<img src="{{ asset('image/game-6.jpg')}}">
-                                    	</div>
-                                    </div>
-                                    <div>
-                                    	<div class="feed-image">
-                                    		<img src="{{ asset('image/game-7.jpg')}}">
-                                    	</div>
-                                    </div>
-                                </div>
-                                <div class="caption-section">
-                                	<div class="inner-caption">
-                                	<div class="like-section">
-                                	    <ul>
-                                	    	<li><i class="far fa-heart"></i><span>200</span></li>
-                                		    <li><i class="far fa-comment-dots"><span>355</span></i></li>
-                                		</ul>
-                                	</div>
-                                	<div class="views"><a href="#">384,232 views</a></div>
-                                	<div class="caption-text">
-                                	    <a href="#">jacob@123</a>
-                                	    <span data-collapse-limit="70">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</span>
-                                	</div>
-                                	<div class="total-comment">
-                                		<a href="comment.html">View all <span>355</span> comments </a>
-                                	</div>
-                                	<div class="caption-text caption-text1">
-                                		<div>
-                                	    	<a href="#">Marco</a>
-                                	    	<span>Lorem Ipsum is simply dummy text</span>
-                                	    </div>
-                                	    <div>
-                                	    	<i class="far fa-heart"></i>
-                                	    </div>
-                                	</div>
-                                	<div class="caption-text caption-text1">
-                                		<div>
-                                		    <a href="#">Coinneach</a>
-                                		    <span>Lorem Ipsum is simply dummy text</span>
-                                		</div>
-                                		<div>
-                                			<i class="far fa-heart"></i>
-                                		</div>
-                                	</div>
-                                </div>
-                                	<div class="comment-fillup">
-                                		<form>
-                                			<div class="emoji-section">
-                                				<i class="far fa-smile"></i>
-                                			</div>
-                                			<textarea placeholder="Add a comments..."></textarea>
-                                			<input type="submit" value="post">
-                                		</form>
-                                	</div>
-                                </div>
-							</div>
-							<div class="set-section2 image ludo mine-craft">
-								<div class="main-user-image">
-								    <div class="user-image">
-                                    	<img src="{{ asset('image/status-6.jpg')}}">
-                                    	<h3>Devin</h3>
-                                    </div>
-                                    <div class="user-dots" data-toggle="modal" data-target="#form">
-                                    	<i class="fal fa-ellipsis-h"></i>
-                                    </div>
-                                </div>
-								<div class="slider slider-nav1">
-                                    <div>
-                                    	<div class="feed-image">
-                                    		<img src="{{ asset('image/game-8.jpg')}}">
-                                    	</div>
-                                    </div>
-                                    <div>
-                                    	<div class="feed-image">
-                                    		<img src="{{ asset('image/game-9.jpg')}}">
-                                    	</div>
-                                    </div>
-                                    <div>
-                                    	<div class="feed-image">
-                                    		<img src="{{ asset('image/game-10.jpg')}}">
-                                    	</div>
-                                    </div>
-                                </div>
-                                <div class="caption-section">
-                                	<div class="inner-caption">
-                                	<div class="like-section">
-                                	    <ul>
-                                	    	<li><i class="far fa-heart"></i><span>200</span></li>
-                                		    <li><i class="far fa-comment-dots"><span>355</span></i></li>
-                                		</ul>
-                                	</div>
-                                	<div class="views"><a href="#">384,232 views</a></div>
-                                	<div class="caption-text">
-                                	    <a href="#">Devin</a>
-                                	    <span data-collapse-limit="70">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</span>
-                                	</div>
-                                	<div class="total-comment">
-                                		<a href="comment.html">View all <span>355</span> comments </a>
-                                	</div>
-                                	<div class="caption-text caption-text1">
-                                		<div>
-                                	    	<a href="#">Marco</a>
-                                	    	<span>Lorem Ipsum is simply dummy text</span>
-                                	    </div>
-                                	    <div>
-                                	    	<i class="far fa-heart"></i>
-                                	    </div>
-                                	</div>
-                                	<div class="caption-text caption-text1">
-                                		<div>
-                                		    <a href="#">Coinneach</a>
-                                		    <span>Lorem Ipsum is simply dummy text</span>
-                                		</div>
-                                		<div>
-                                			<i class="far fa-heart"></i>
-                                		</div>
-                                	</div>
-                                </div>
-                                	<div class="comment-fillup">
-                                		<form>
-                                			<div class="emoji-section">
-                                				<i class="far fa-smile"></i>
-                                			</div>
-                                			<textarea placeholder="Add a comments..."></textarea>
-                                			<input type="submit" value="post">
-                                		</form>
-                                	</div>
-                                </div>
-							</div>
-							<div class="set-section2 image goose">
-								<div class="main-user-image">
-								    <div class="user-image">
-                                    	<img src="{{ asset('image/status-8.jpg')}}">
-                                    	<h3>Driss</h3>
-                                    </div>
-                                    <div class="user-dots" data-toggle="modal" data-target="#form">
-                                    	<i class="fal fa-ellipsis-h"></i>
-                                    </div>
-                                </div>
-								<div class="slider slider-nav1">
-                                    <div>
-                                    	<div class="feed-image">
-                                    		<img src="{{ asset('image/game-11.jpg')}}">
-                                    	</div>
-                                    </div>
-                                    <div>
-                                    	<div class="feed-image">
-                                    		<img src="{{ asset('image/game-1.jpg')}}">
-                                    	</div>
-                                    </div>
-                                    <div>
-                                    	<div class="feed-image">
-                                    		<img src="{{ asset('image/game-2.jpg')}}">
-                                    	</div>
-                                    </div>
-                                </div>
-                                <div class="caption-section">
-                                	<div class="inner-caption">
-                                	<div class="like-section">
-                                	    <ul>
-                                	    	<li><i class="far fa-heart"></i><span>200</span></li>
-                                		    <li><i class="far fa-comment-dots"><span>355</span></i></li>
-                                		</ul>
-                                	</div>
-                                	<div class="views"><a href="#">384,232 views</a></div>
-                                	<div class="caption-text">
-                                	    <a href="#">Driss</a>
-                                	    <span data-collapse-limit="70">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</span>
-                                	</div>
-                                	<div class="total-comment">
-                                		<a href="comment.html">View all <span>355</span> comments </a>
-                                	</div>
-                                	<div class="caption-text caption-text1">
-                                		<div>
-                                	    	<a href="#">Marco</a>
-                                	    	<span>Lorem Ipsum is simply dummy text</span>
-                                	    </div>
-                                	    <div>
-                                	    	<i class="far fa-heart"></i>
-                                	    </div>
-                                	</div>
-                                	<div class="caption-text caption-text1">
-                                		<div>
-                                		    <a href="#">Coinneach</a>
-                                		    <span>Lorem Ipsum is simply dummy text</span>
-                                		</div>
-                                		<div>
-                                			<i class="far fa-heart"></i>
-                                		</div>
-                                	</div>
-                                </div>
-                                	<div class="comment-fillup">
-                                		<form>
-                                			<div class="emoji-section">
-                                				<i class="far fa-smile"></i>
-                                			</div>
-                                			<textarea placeholder="Add a comments..."></textarea>
-                                			<input type="submit" value="post">
-                                		</form>
-                                	</div>
-                                </div>
-							</div>
-							<div class="set-section2 image chess checkers">
-								<div class="main-user-image">
-								    <div class="user-image">
-                                    	<img src="{{ asset('image/feed-image-1.jfif')}}">
-                                    	<h3>Leslie@123</h3>
-                                    </div>
-                                    <div class="user-dots" data-toggle="modal" data-target="#form">
-                                    	<i class="fal fa-ellipsis-h"></i>
-                                    </div>
-                                </div>
-								<div class="slider slider-nav1">
-                                    <div>
-                                    	<div class="feed-image">
-                                    		<img src="{{ asset('image/game-3.jpg')}}">
-                                    	</div>
-                                    </div>
-                                    <div>
-                                    	<div class="feed-image">
-                                    		<img src="{{ asset('image/game-4.jpg')}}">
-                                    	</div>
-                                    </div>
-                                    <div>
-                                    	<div class="feed-image">
-                                    		<img src="{{ asset('image/game-5.jpg')}}">
-                                    	</div>
-                                    </div>
-                                </div>
-                                <div class="caption-section">
-                                	<div class="inner-caption">
-                                	<div class="like-section">
-                                	    <ul>
-                                	    	<li><i class="far fa-heart"></i><span>200</span></li>
-                                		    <li><i class="far fa-comment-dots"><span>355</span></i></li>
-                                		</ul>
-                                	</div>
-                                	<div class="views"><a href="#">384,232 views</a></div>
-                                	<div class="caption-text">
-                                	    <a href="#">Leslie@123</a>
-                                	    <span data-collapse-limit="70">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</span>
-                                	</div>
-                                	<div class="total-comment">
-                                		<a href="comment.html">View all <span>355</span> comments </a>
-                                	</div>
-                                	<div class="caption-text caption-text1">
-                                		<div>
-                                	    	<a href="#">Marco</a>
-                                	    	<span>Lorem Ipsum is simply dummy text</span>
-                                	    </div>
-                                	    <div>
-                                	    	<i class="far fa-heart"></i>
-                                	    </div>
-                                	</div>
-                                	<div class="caption-text caption-text1">
-                                		<div>
-                                		    <a href="#">Coinneach</a>
-                                		    <span>Lorem Ipsum is simply dummy text</span>
-                                		</div>
-                                		<div>
-                                			<i class="far fa-heart"></i>
-                                		</div>
-                                	</div>
-                                </div>
-                                	<div class="comment-fillup">
-                                		<form>
-                                			<div class="emoji-section">
-                                				<i class="far fa-smile"></i>
-                                			</div>
-                                			<textarea placeholder="Add a comments..."></textarea>
-                                			<input type="submit" value="post">
-                                		</form>
-                                	</div>
-                                </div>
-							</div>
-							<div class="set-section2 image pubg mine-craft">
-								<div class="main-user-image">
-								    <div class="user-image">
-                                    	<img src="{{ asset('image/game-12.jfif')}}">
-                                    	<h3>Albert Flores</h3>
-                                    </div>
-                                    <div class="user-dots" data-toggle="modal" data-target="#form">
-                                    	<i class="fal fa-ellipsis-h"></i>
-                                    </div>
-                                </div>
-								<div class="slider slider-nav1">
-                                    <div>
-                                    	<div class="feed-image">
-                                    		<img src="{{ asset('image/game-6.jpg')}}">
-                                    	</div>
-                                    </div>
-                                    <div>
-                                    	<div class="feed-image">
-                                    		<img src="{{ asset('image/game-7.jpg')}}">
-                                    	</div>
-                                    </div>
-                                    <div>
-                                    	<div class="feed-image">
-                                    		<img src="{{ asset('image/game-8.jpg')}}">
-                                    	</div>
-                                    </div>
-                                </div>
-                                <div class="caption-section">
-                                	<div class="inner-caption">
-                                	<div class="like-section">
-                                	    <ul>
-                                	    	<li><i class="far fa-heart"></i><span>200</span></li>
-                                		    <li><i class="far fa-comment-dots"><span>355</span></i></li>
-                                		</ul>
-                                	</div>
-                                	<div class="views"><a href="#">384,232 views</a></div>
-                                	<div class="caption-text">
-                                	    <a href="#">Albert Flores</a>
-                                	    <span data-collapse-limit="70">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</span>
-                                	</div>
-                                	<div class="total-comment">
-                                		<a href="comment.html">View all <span>355</span> comments </a>
-                                	</div>
-                                	<div class="caption-text caption-text1">
-                                		<div>
-                                	    	<a href="#">Marco</a>
-                                	    	<span>Lorem Ipsum is simply dummy text</span>
-                                	    </div>
-                                	    <div>
-                                	    	<i class="far fa-heart"></i>
-                                	    </div>
-                                	</div>
-                                	<div class="caption-text caption-text1">
-                                		<div>
-                                		    <a href="#">Coinneach</a>
-                                		    <span>Lorem Ipsum is simply dummy text</span>
-                                		</div>
-                                		<div>
-                                			<i class="far fa-heart"></i>
-                                		</div>
-                                	</div>
-                                </div>
-                                	<div class="comment-fillup">
-                                		<form>
-                                			<div class="emoji-section">
-                                				<i class="far fa-smile"></i>
-                                			</div>
-                                			<textarea placeholder="Add a comments..."></textarea>
-                                			<input type="submit" value="post">
-                                		</form>
-                                	</div>
-                                </div>
-							</div>
+							@endforeach
 						</div>
 					</div>
 				</div>
@@ -1399,13 +614,13 @@
       $(document).ready(function() {
   var ellipsesText = "...";
   var expandText = "Read more";
-  var collapseText = "Read less";
+  var collapseText ="Read less";
   $('.caption-text span').each(function() {
     var content = $(this).html();
     var collapseLimit = $(this).data('collapse-limit');
     if(content.length > collapseLimit) {
       var collapsedContent = content.substr(0, collapseLimit);
-      var expandedContent = content.substr(collapseLimit-1, content.length - collapseLimit);
+      var expandedContent = content.substr(collapseLimit, content.length - collapseLimit);
       $(this).empty();
       $(this).append($('<span />').addClass('collapsed-content').html(collapsedContent));
       $(this).append($('<span />').addClass('ellipses').html(ellipsesText));
